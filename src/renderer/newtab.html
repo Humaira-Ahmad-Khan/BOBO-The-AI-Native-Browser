@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>New Tab</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="newtab-page">
+  <!-- Dynamic Background Scrim for Custom Images/Gradients -->
+  <div id="newtab-bg-layer" class="newtab-bg-layer"></div>
+  <div id="newtab-scrim" class="newtab-scrim is-active"></div>
+
+  <!-- Top Right Header: Gmail, Images, Google Apps Launcher -->
+  <header class="newtab-top-bar" aria-label="Google services">
+    <a id="link-gmail" href="https://mail.google.com/" class="newtab-top-link" title="Open Gmail">Gmail</a>
+    <a id="link-images" href="https://images.google.com/" class="newtab-top-link" title="Open Google Images">Images</a>
+    <button id="btn-google-apps" class="newtab-apps-btn" type="button" title="Google apps"
+            aria-label="Google apps" aria-haspopup="dialog" aria-expanded="false" aria-controls="google-apps-panel">
+      <svg viewBox="0 0 24 24" class="apps-grid-svg" aria-hidden="true">
+        <circle cx="5" cy="5" r="2" fill="currentColor"/>
+        <circle cx="12" cy="5" r="2" fill="currentColor"/>
+        <circle cx="19" cy="5" r="2" fill="currentColor"/>
+        <circle cx="5" cy="12" r="2" fill="currentColor"/>
+        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+        <circle cx="19" cy="12" r="2" fill="currentColor"/>
+        <circle cx="5" cy="19" r="2" fill="currentColor"/>
+        <circle cx="12" cy="19" r="2" fill="currentColor"/>
+        <circle cx="19" cy="19" r="2" fill="currentColor"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Google Apps Floating Panel (3 columns, scrollable) -->
+  <div id="google-apps-panel" class="google-apps-panel" role="dialog" aria-modal="false"
+       aria-label="Google apps" hidden>
+    <div class="google-apps-head">
+      <span class="google-apps-title">Google apps</span>
+      <span class="google-apps-local">Local shortcuts</span>
+    </div>
+
+    <div class="google-apps-scroll-wrap">
+      <div id="google-apps-grid" class="google-apps-grid"></div>
+      <p id="google-apps-empty" class="google-apps-empty" hidden>
+        All shortcuts are hidden. Use <strong>Customise</strong> to show them again.
+      </p>
+    </div>
+
+    <!-- Manage view: reorder, hide, restore defaults -->
+    <div id="google-apps-manage" class="google-apps-manage" hidden>
+      <div class="google-apps-manage-head">
+        <span>Customise shortcuts</span>
+        <button id="btn-google-apps-manage-close" class="google-apps-icon-btn" type="button"
+                aria-label="Close customise view">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <label class="google-apps-open-pref">
+        <input id="google-apps-open-new" type="checkbox" />
+        <span>Open services in a new tab</span>
+      </label>
+      <div id="google-apps-manage-list" class="google-apps-manage-list"></div>
+      <div class="google-apps-manage-actions">
+        <button id="btn-restore-apps" class="btn-subtle btn-xs" type="button">Restore defaults</button>
+        <span id="google-apps-save-state" class="google-apps-save-state" role="status"></span>
+      </div>
+    </div>
+
+    <div class="google-apps-footer">
+      <button id="btn-google-apps-manage" class="google-apps-footer-btn" type="button">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h10M18 18h2"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg>
+        <span>Customise</span>
+      </button>
+      <a href="https://about.google/products/" class="google-apps-footer-btn" target="_blank" rel="noreferrer">More from Google</a>
+    </div>
+  </div>
+
+  <!-- SVG Icon Sprite -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="newtab-search-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="6.3" /><path d="M15.7 15.7 20.3 20.3" />
+      </symbol>
+      <symbol id="newtab-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="newtab-more" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="5" r="1.8" /><circle cx="12" cy="12" r="1.8" /><circle cx="12" cy="19" r="1.8" />
+      </symbol>
+      <symbol id="newtab-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="3" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 15-5-5L5 21" />
+      </symbol>
+      <symbol id="newtab-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" />
+      </symbol>
+      <symbol id="newtab-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="2.5" width="6" height="11" rx="3" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><path d="M12 19v3M8.5 22h7" />
+      </symbol>
+      <symbol id="newtab-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" />
+      </symbol>
+      <symbol id="newtab-sparkle" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11 3.2 12.9 8.6 18.3 10.5l-5.4 1.9L11 17.8 9.1 12.4 3.7 10.5l5.4-1.9z" />
+        <path d="M18.5 14.2 19.3 16.4 21.5 17.2 19.3 18 18.5 20.2 17.7 18 15.5 17.2 17.7 16.4z" opacity=".75" />
+      </symbol>
+      <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+      </symbol>
+      <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9" /><path d="M3.6 9h16.8M3.6 15h16.8M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+      </symbol>
+      <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.5-.7 1.5-1.5 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.8.7-1.5 1.5-1.5H16c3.3 0 6-2.7 6-6 0-5.5-4.5-8.8-10-8.8z" />
+      </symbol>
+      <symbol id="icon-rows" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="4" rx="1" /><rect x="3" y="10" width="18" height="4" rx="1" /><rect x="3" y="16" width="18" height="4" rx="1" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="newtab-chrome-wrap">
+    <!-- Centered Brand: Compact & Balanced -->
+    <header class="newtab-center-brand">
+      <img src="../assets/logo/BOBO_Arctic_Frost/BOBO_Arctic_Frost_Emblem_Transparent_1024.png"
+           alt="BOBO" width="60" height="60" class="brand-logo" />
+      <h1 class="brand-wordmark">BOBO</h1>
+      <p class="brand-tagline">Your Browser. Your AI Buddy.</p>
+    </header>
+
+    <!-- Upgraded Chrome-Style Search Field: [+][Search][Mic][Camera][AI Mode] -->
+    <div class="newtab-search-wrapper">
+      <form id="search-form" class="newtab-chrome-search newtab-search" role="search" autocomplete="off">
+        <!-- Used by branding-smoke test to verify accent color -->
+        <button type="submit" class="search-btn" hidden>Search</button>
+
+        <div class="search-left-controls">
+          <button id="btn-attach-menu" class="search-icon-btn plus-btn" type="button"
+                  title="Add images or files" aria-label="Add images or files"
+                  aria-haspopup="menu" aria-expanded="false" aria-controls="attach-dropdown">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div id="attach-dropdown" class="attach-dropdown" role="menu" aria-label="Add attachments" hidden>
+            <button id="attach-opt-images" type="button" class="attach-dropdown-item" role="menuitem" tabindex="-1">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Add Images</span>
+            </button>
+            <button id="attach-opt-files" type="button" class="attach-dropdown-item" role="menuitem" tabindex="-1">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Add Files</span>
+            </button>
+          </div>
+        </div>
+
+        <input id="q" type="text" spellcheck="false" autofocus
+               placeholder="Search Google" aria-label="Search Google or enter address" />
+
+        <div class="search-right-controls">
+          <button id="btn-search-mic" class="search-icon-btn" type="button"
+                  title="Voice search" aria-label="Voice search" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3M8.5 22h7"/></svg>
+          </button>
+          <button id="btn-search-cam" class="search-icon-btn" type="button"
+                  title="Search by image" aria-label="Search by image" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </button>
+          <div class="ai-mode-wrap">
+            <button id="btn-ai-mode" class="search-ai-btn" type="button"
+                    aria-disabled="true" aria-describedby="ai-mode-tip"
+                    title="AI Mode — Coming Soon">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M11 3.5 12.8 8.7 18 10.5l-5.2 1.8L11 17.5 9.2 12.3 4 10.5l5.2-1.8z"/></svg>
+              <span>AI Mode</span>
+              <span class="search-ai-soon">Soon</span>
+            </button>
+            <span id="ai-mode-tip" class="ai-mode-tip" role="status" hidden>AI Mode — Coming Soon</span>
+          </div>
+        </div>
+      </form>
+      <div id="newtab-suggestions" class="search-suggestions" role="listbox" aria-label="Search suggestions" hidden></div>
+
+      <!-- Attachments preview tray (images + files, local only) -->
+      <div id="attachments-tray" class="attachments-tray" hidden>
+        <div class="attachments-head">
+          <span class="attachments-title">Attachments</span>
+          <span class="attachments-local">Local until you confirm an image search</span>
+        </div>
+        <div id="attachments-list" class="attachments-list"></div>
+        <p id="attachments-note" class="attachments-note" hidden></p>
+      </div>
+    </div>
+
+    <!-- Chrome-Style Shortcuts Grid: At least 6 per row -->
+    <section class="chrome-shortcuts-section" aria-label="Quick Access Shortcuts">
+      <div id="shortcuts-grid" class="chrome-shortcuts-grid"></div>
+    </section>
+
+    <!-- Floating Customize Page Button (Bottom-Right, Chrome Style) -->
+    <button id="btn-customize-bg" class="floating-customize-btn" type="button" title="Customize this page" aria-haspopup="dialog">
+      <svg class="customize-icon"><use href="#icon-pencil" /></svg>
+      <span>Customize BOBO</span>
+    </button>
+
+    <!-- Add/Edit Shortcut Dialog -->
+    <dialog id="shortcut-dialog" class="shortcut-modal">
+      <form id="shortcut-form" method="dialog" class="shortcut-modal-box">
+        <div class="modal-header">
+          <h3 id="modal-title">Add Shortcut</h3>
+          <button id="modal-close-x" class="modal-icon-btn" type="button" aria-label="Close dialog">
+            <svg><use href="#icon-close" /></svg>
+          </button>
+        </div>
+        <label class="modal-field">
+          <span>Name</span>
+          <input id="modal-name" type="text" required placeholder="e.g. Google" maxlength="40" autocomplete="off" />
+        </label>
+        <label class="modal-field">
+          <span>URL</span>
+          <input id="modal-url" type="text" required placeholder="https://example.com" maxlength="1000" autocomplete="off" />
+        </label>
+        <div class="modal-actions">
+          <button id="modal-delete" class="btn danger" type="button" hidden>Remove</button>
+          <div class="modal-spacer"></div>
+          <button id="modal-cancel" class="btn" type="button">Cancel</button>
+          <button id="modal-save" class="btn primary" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Voice Search Unavailable Dialog (no microphone is ever opened) -->
+    <dialog id="voice-dialog" class="newtab-modal" aria-labelledby="voice-dialog-title">
+      <div class="newtab-modal-box">
+        <div class="modal-header">
+          <h3 id="voice-dialog-title">Voice search is unavailable</h3>
+          <button class="modal-icon-btn" type="button" data-close-dialog="voice-dialog" aria-label="Close dialog">
+            <svg><use href="#icon-close" /></svg>
+          </button>
+        </div>
+        <div class="newtab-modal-callout">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3M8.5 22h7"/></svg>
+          <p>This BOBO build has no speech-recognition service connected, so voice input cannot work yet.</p>
+        </div>
+        <p class="newtab-modal-text">
+          The microphone is <strong>not</strong> being accessed. BOBO never records automatically and never
+          uploads audio. When a supported, permission-based speech engine is added, this button will ask
+          for your consent before listening.
+        </p>
+        <div class="modal-actions">
+          <div class="modal-spacer"></div>
+          <button class="btn primary" type="button" data-close-dialog="voice-dialog">Close</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Local Image Selection Dialog (no webcam, no Google Lens claim) -->
+    <dialog id="image-dialog" class="newtab-modal" aria-labelledby="image-dialog-title">
+      <div class="newtab-modal-box">
+        <div class="modal-header">
+          <h3 id="image-dialog-title">Search by image</h3>
+          <button class="modal-icon-btn" type="button" data-close-dialog="image-dialog" aria-label="Close dialog">
+            <svg><use href="#icon-close" /></svg>
+          </button>
+        </div>
+        <p class="newtab-modal-text">
+          Choose an image to preview. Search with Google Lens sends a copy to Google after you confirm.
+        </p>
+        <div id="image-dialog-preview-wrap" class="image-dialog-preview-wrap" hidden>
+          <img id="image-dialog-preview" class="image-dialog-preview" alt="Selected image preview" />
+          <div class="image-dialog-file">
+            <span id="image-dialog-name" class="image-dialog-name"></span>
+            <span id="image-dialog-meta" class="image-dialog-meta"></span>
+          </div>
+        </div>
+        <div id="image-dialog-empty" class="image-dialog-empty">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>No image selected</span>
+        </div>
+        <div class="modal-actions">
+          <button id="btn-image-search" class="btn primary" type="button" hidden>Search with Google Lens</button>
+          <button id="btn-image-choose" class="btn primary" type="button">Choose Image</button>
+          <button id="btn-image-remove" class="btn danger" type="button" hidden>Remove Image</button>
+          <div class="modal-spacer"></div>
+          <button class="btn" type="button" data-close-dialog="image-dialog">Close</button>
+        </div>
+        <p id="image-dialog-status" class="newtab-modal-text" role="status" aria-live="polite"></p>
+      </div>
+    </dialog>
+
+    <!-- Customize BOBO Dialog (Background & Layout) -->
+    <dialog id="customize-dialog" class="customize-modal">
+      <div class="customize-modal-box">
+        <div class="modal-header">
+          <div class="customize-title-wrap">
+            <svg class="customize-title-icon"><use href="#icon-palette" /></svg>
+            <h3>Customize this page</h3>
+          </div>
+          <button id="customize-close-btn" class="modal-icon-btn" type="button" aria-label="Close dialog">
+            <svg><use href="#icon-close" /></svg>
+          </button>
+        </div>
+
+        <div class="customize-body">
+          <!-- Section 1: Background Customization -->
+          <div class="customize-section">
+            <h4 class="customize-section-title">Background</h4>
+
+            <!-- Default Reset -->
+            <div class="bg-option-row">
+              <button id="bg-preset-default" class="bg-preset-tile is-active" type="button" data-bg-type="default">
+                <span class="preset-preview bg-default-preview"></span>
+                <span class="preset-label">Default Arctic Frost</span>
+              </button>
+            </div>
+
+            <!-- Solid Colors -->
+            <div class="customize-subsection-label">Solid Colours</div>
+            <div class="bg-colors-grid">
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#192734" title="Deep Navy" style="background:#192734;"></button>
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#0b131a" title="Midnight Black" style="background:#0b131a;"></button>
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#182533" title="Nordic Charcoal" style="background:#182533;"></button>
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#112233" title="Ocean Abyss" style="background:#112233;"></button>
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#1f2d3d" title="Slate Frost" style="background:#1f2d3d;"></button>
+              <button class="bg-swatch-btn" type="button" data-bg-type="color" data-color="#233544" title="Steel Ice" style="background:#233544;"></button>
+              <label class="bg-swatch-picker-label" title="Custom color picker">
+                <input id="bg-custom-color" type="color" value="#192734" />
+                <span class="swatch-picker-icon">&plus;</span>
+              </label>
+            </div>
+
+            <!-- Built-in Gradient Presets -->
+            <div class="customize-subsection-label">Gradients</div>
+            <div class="bg-gradients-grid">
+              <button class="bg-gradient-btn" type="button" data-bg-type="gradient" data-gradient="linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #173f4d 100%)" title="Northern Lights" style="background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #173f4d 100%);">
+                <span>Northern Lights</span>
+              </button>
+              <button class="bg-gradient-btn" type="button" data-bg-type="gradient" data-gradient="radial-gradient(circle at 50% 10%, #203a4c 0%, #0d1720 85%)" title="Glacier Glow" style="background: radial-gradient(circle at 50% 10%, #203a4c 0%, #0d1720 85%);">
+                <span>Glacier Glow</span>
+              </button>
+              <button class="bg-gradient-btn" type="button" data-bg-type="gradient" data-gradient="linear-gradient(180deg, #182635 0%, #080d12 100%)" title="Midnight Horizon" style="background: linear-gradient(180deg, #182635 0%, #080d12 100%);">
+                <span>Midnight Horizon</span>
+              </button>
+              <button class="bg-gradient-btn" type="button" data-bg-type="gradient" data-gradient="linear-gradient(135deg, #141e30 0%, #243b55 100%)" title="Cyber Frost" style="background: linear-gradient(135deg, #141e30 0%, #243b55 100%);">
+                <span>Cyber Frost</span>
+              </button>
+            </div>
+
+            <!-- Custom Background Image -->
+            <div class="customize-subsection-label">Custom Image</div>
+            <div class="bg-image-upload-wrap">
+              <label class="btn-file-upload">
+                <svg><use href="#icon-upload" /></svg>
+                <span>Upload from this device</span>
+                <input id="bg-file-input" type="file" accept="image/png, image/jpeg, image/jpg, image/webp" hidden />
+              </label>
+              <div id="bg-image-preview-wrap" class="bg-image-preview-wrap" hidden>
+                <img id="bg-image-preview" alt="Background preview" />
+                <button id="bg-image-remove" class="btn danger btn-sm" type="button">Remove image</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Shortcuts Row Configuration -->
+          <div class="customize-section">
+            <h4 class="customize-section-title">Shortcut Rows</h4>
+            <div class="row-options-grid">
+              <label class="row-option-card">
+                <input type="radio" name="shortcut-rows" value="1" />
+                <div class="row-card-content">
+                  <strong>1 Row</strong>
+                  <small>Up to 6 shortcuts</small>
+                </div>
+              </label>
+              <label class="row-option-card">
+                <input type="radio" name="shortcut-rows" value="2" checked />
+                <div class="row-card-content">
+                  <strong>2 Rows</strong>
+                  <small>Up to 12 shortcuts</small>
+                </div>
+              </label>
+              <label class="row-option-card">
+                <input type="radio" name="shortcut-rows" value="3" />
+                <div class="row-card-content">
+                  <strong>3 Rows</strong>
+                  <small>Up to 18 shortcuts</small>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Section 3: Reset Shortcuts -->
+          <div class="customize-section">
+            <h4 class="customize-section-title">Default Shortcuts</h4>
+            <div class="reset-shortcuts-row">
+              <p>Restore the default shortcuts (WhatsApp, Facebook, LinkedIn, YouTube, GitHub, DuckDuckGo).</p>
+              <button id="btn-reset-shortcuts-modal" class="btn" type="button">Reset Shortcuts</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button id="customize-done-btn" class="btn primary" type="button">Done</button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <div id="newtab-status" class="newtab-status" role="status" aria-live="polite"></div>
+
+  <script src="search-suggestions.js"></script>
+  <script src="newtab.js"></script>
+</body>
+</html>

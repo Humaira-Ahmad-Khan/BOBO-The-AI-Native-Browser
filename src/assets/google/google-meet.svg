@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Google Meet">
+  <rect x="2" y="4" width="20" height="16" rx="3" fill="#00832D"/>
+  <rect x="4.5" y="7" width="9.5" height="10" rx="2" fill="#FFFFFF"/>
+  <path fill="#FFFFFF" d="M15.4 10.2 20 7.4v9.2l-4.6-2.8z"/>
+  <path fill="#00AC47" d="M2 18.5 5.6 20H8l-3.4-4.2z"/>
+  <path fill="#4285F4" d="M22 18.5 18.4 20H16l3.4-4.2z"/>
+</svg>

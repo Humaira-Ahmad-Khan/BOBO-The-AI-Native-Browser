@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Who’s using BOBO?</title>
+  <link rel="stylesheet" href="profiles.css" />
+</head>
+<body>
+  <header>
+    <img src="../assets/logo/BOBO_Arctic_Frost/BOBO_Arctic_Frost_64.png" width="52" height="52" alt="BOBO" />
+    <h1>Who’s using BOBO?</h1>
+    <p>Choose a profile for your browsing. Each profile keeps its own logins, bookmarks, history and settings.</p>
+    <p>Switching profiles restarts BOBO. Downloads and active tools may be interrupted.</p>
+  </header>
+  <main id="profiles" aria-label="Browser profiles"></main>
+  <p id="profile-status" role="status"></p>
+  <dialog id="profile-editor" aria-labelledby="editor-title">
+    <form id="profile-form">
+      <h2 id="editor-title">Add profile</h2>
+      <label for="profile-name">Profile name</label>
+      <input id="profile-name" maxlength="50" required autocomplete="off" />
+      <label for="profile-color">Profile colour</label>
+      <select id="profile-color"></select>
+      <p id="editor-status" role="status"></p>
+      <footer>
+        <button id="editor-delete" type="button" hidden>Delete profile</button>
+        <button id="editor-cancel" type="button">Cancel</button>
+        <button id="editor-save" type="submit">Save profile</button>
+      </footer>
+    </form>
+  </dialog>
+  <script src="profiles.js"></script>
+</body>
+</html>

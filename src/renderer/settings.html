@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Settings - BOBO</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="settings-page">
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="set-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4" /><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+      </symbol>
+      <symbol id="set-appearance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4" /><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6" />
+      </symbol>
+      <symbol id="set-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="6.3" /><path d="M15.7 15.7 20.3 20.3" />
+      </symbol>
+      <symbol id="set-startup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 11.4 12 4.5l8.5 6.9" /><path d="M5.8 10.4V19.5h12.4v-9.1" />
+      </symbol>
+      <symbol id="set-tabs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" /><path d="M3.5 9.5h17" />
+      </symbol>
+      <symbol id="set-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" />
+      </symbol>
+      <symbol id="set-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4v10.2" /><path d="m7.6 10.4 4.4 4.4 4.4-4.4" /><path d="M5 19.5h14" />
+      </symbol>
+      <symbol id="set-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3s7 3 7 9c0 5.5-4.5 9-7 10-2.5-1-7-4.5-7-10 0-6 7-9 7-9z" /><path d="m9 12 2 2 4-4" />
+      </symbol>
+      <symbol id="set-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5" /><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
+      </symbol>
+      <symbol id="set-tools" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1.6" /><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6" />
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6" /><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6" />
+      </symbol>
+      <symbol id="set-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" /><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+      </symbol>
+      <symbol id="set-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8.5" /><path d="M12 16v-4" /><circle cx="12" cy="8" r="0.75" fill="currentColor" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="settings-app">
+    <!-- Left Navigation Sidebar -->
+    <aside class="settings-sidebar">
+      <div class="settings-nav-header">
+        <img src="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" alt="BOBO" width="22" height="22" />
+        <span>Settings</span>
+      </div>
+      <nav class="settings-nav" aria-label="Settings Categories">
+        <button class="settings-nav-btn is-active" type="button" data-section="profile">
+          <svg><use href="#set-user" /></svg><span>You and BOBO / Profiles</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="appearance">
+          <svg><use href="#set-appearance" /></svg><span>Appearance</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="search">
+          <svg><use href="#set-search" /></svg><span>Search Engine</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="startup">
+          <svg><use href="#set-startup" /></svg><span>On Startup</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="tabs">
+          <svg><use href="#set-tabs" /></svg><span>Tabs</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="bookmarks">
+          <svg><use href="#set-star" /></svg><span>Bookmarks</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="downloads">
+          <svg><use href="#set-download" /></svg><span>Downloads</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="privacy">
+          <svg><use href="#set-shield" /></svg><span>Privacy and Security</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="permissions">
+          <svg><use href="#set-lock" /></svg><span>Website Permissions</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="passwords">
+          <svg><use href="#set-lock" /></svg><span>Passwords and Autofill</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="tools">
+          <svg><use href="#set-tools" /></svg><span>Personal Tools</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="data">
+          <svg><use href="#set-database" /></svg><span>Browser Data</span>
+        </button>
+        <button class="settings-nav-btn" type="button" data-section="about">
+          <svg><use href="#set-info" /></svg><span>About BOBO</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="settings-main">
+      <!-- 1. You and BOBO / Profiles -->
+      <section class="settings-pane" id="pane-profile">
+        <h2 class="pane-title">You and BOBO / Profiles</h2>
+        <div class="settings-card profile-card">
+          <div class="profile-avatar">
+            <svg><use href="#set-user" /></svg>
+          </div>
+          <div class="profile-meta">
+            <strong>Default Profile</strong>
+            <p>Local user profile on this PC. No online accounts or cloud logins are required.</p>
+            <span class="status-chip is-ok">100% Local &amp; Private</span>
+          </div>
+        </div>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Cloud Sync</strong>
+              <p>Disabled by design. Your bookmarks, tabs, and preferences never leave this computer.</p>
+            </div>
+            <span class="status-chip">Offline</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Appearance -->
+      <section class="settings-pane" id="pane-appearance" hidden>
+        <h2 class="pane-title">Appearance</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Theme</strong>
+              <p>Choose between BOBO Deep Navy dark mode or Snow White light mode.</p>
+            </div>
+            <select id="set-theme-select" class="tp-select">
+              <option value="dark">Dark (Deep Navy)</option>
+              <option value="light">Light (Snow White)</option>
+            </select>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Show Bookmarks Bar</strong>
+              <p>Display your bookmarked pages directly below the address bar (Ctrl+Shift+B).</p>
+            </div>
+            <select id="set-show-bookmarks" class="tp-select">
+              <option value="always">Always show</option>
+              <option value="newtab">Only on New Tab</option>
+              <option value="never">Never show</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Search Engine -->
+      <section class="settings-pane" id="pane-search" hidden>
+        <h2 class="pane-title">Search Engine</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Default Search Engine</strong>
+              <p>Used by the address bar and the New Tab search field.</p>
+            </div>
+            <select id="set-search-select" class="tp-select">
+              <option value="google">Google</option>
+              <option value="duckduckgo">DuckDuckGo</option>
+            </select>
+          </div>
+          <p id="search-status-msg" class="setting-feedback" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- 4. On Startup -->
+      <section class="settings-pane" id="pane-startup" hidden>
+        <h2 class="pane-title">On Startup</h2>
+        <div class="settings-card">
+          <label class="radio-row">
+            <input type="radio" name="startup-mode" value="newtab" id="startup-newtab" />
+            <div>
+              <strong>Open the New Tab page</strong>
+              <p>Start fresh with the BOBO New Tab page every time.</p>
+            </div>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="startup-mode" value="continue" id="startup-restore" />
+            <div>
+              <strong>Continue where you left off</strong>
+              <p>Restore open tabs, pinned sites and tab groups from your previous session.</p>
+            </div>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="startup-mode" value="specific" id="startup-specific" />
+            <div>
+              <strong>Open specific pages</strong>
+              <p>Start with the addresses you choose below, each in its own tab.</p>
+            </div>
+          </label>
+          <div class="startup-pages">
+            <label for="startup-urls">Startup pages (one address per line)</label>
+            <textarea id="startup-urls" rows="4" spellcheck="false" placeholder="https://example.com/&#10;https://example.org/"></textarea>
+            <div class="startup-pages-actions">
+              <button id="startup-save" class="btn" type="button">Save startup pages</button>
+              <p id="startup-status" class="setting-feedback" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Tabs -->
+      <section class="settings-pane" id="pane-tabs" hidden>
+        <h2 class="pane-title">Tabs</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Crash Restoration</strong>
+              <p>Always restore open tabs if the browser was closed unexpectedly.</p>
+            </div>
+            <span class="status-chip is-ok">Always Enabled</span>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Audio Indicator &amp; Muting</strong>
+              <p>Show a speaker icon on audible tabs and allow one-click muting.</p>
+            </div>
+            <span class="status-chip is-ok">Enabled</span>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="card-subtitle">Saved Groups</h3>
+          <p class="setting-desc">Saved groups keep web addresses without query strings or fragments.</p>
+          <div class="setting-row">
+            <label for="saved-groups-shortcut">Open Saved Groups shortcut</label>
+            <select id="saved-groups-shortcut">
+              <option value="">Off</option>
+              <option value="g">Ctrl+Shift+G</option>
+              <option value="y">Ctrl+Shift+Y</option>
+            </select>
+          </div>
+          <label for="saved-groups-search">Search Saved Groups</label>
+          <input id="saved-groups-search" type="search" placeholder="Group name" />
+          <p id="saved-groups-status" role="status"></p>
+          <div id="saved-groups-list" class="saved-groups-list"></div>
+          <div id="saved-groups-empty" class="saved-groups-empty">
+            <p>No saved tab groups yet. Right-click a tab group in the tab strip and choose "Save group".</p>
+          </div>
+          <template id="saved-group-card">
+            <article class="saved-group-item">
+              <div class="saved-group-heading">
+                <div class="saved-group-info">
+                  <strong class="saved-group-name"></strong>
+                  <span class="saved-group-meta"></span>
+                </div>
+                <button class="btn btn-open-group" type="button">Open Group</button>
+              </div>
+              <details>
+                <summary>More options</summary>
+                <form class="saved-group-edit">
+                  <label>Group name <input name="name" maxlength="120" required /></label>
+                  <label>Group colour <select name="color"></select></label>
+                  <button class="btn" type="submit">Save name and colour</button>
+                </form>
+                <div class="saved-group-actions">
+                  <button class="btn btn-update-group" type="button">Update Saved Group</button>
+                  <button class="btn btn-copy-group" type="button">Duplicate Group</button>
+                  <button class="btn btn-del-group" type="button">Delete Saved Group</button>
+                </div>
+              </details>
+            </article>
+          </template>
+        </div>
+      </section>
+
+      <!-- 6. Bookmarks -->
+      <section class="settings-pane" id="pane-bookmarks" hidden>
+        <h2 class="pane-title">Bookmarks</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Import Bookmarks</strong>
+              <p>Import bookmarks from an HTML file exported by Google Chrome or Firefox.</p>
+            </div>
+            <button id="set-btn-import-bm" class="btn" type="button">Import HTML…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Export Bookmarks</strong>
+              <p>Export your bookmarks and folders to a standard HTML file.</p>
+            </div>
+            <button id="set-btn-export-bm" class="btn" type="button">Export HTML…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Clear All Bookmarks</strong>
+              <p>Remove every saved bookmark and folder. Cannot be undone.</p>
+            </div>
+            <button id="set-btn-clear-bm" class="btn danger" type="button">Delete All Bookmarks…</button>
+          </div>
+          <p id="bm-status-msg" class="setting-feedback" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- 7. Downloads -->
+      <section class="settings-pane" id="pane-downloads" hidden>
+        <h2 class="pane-title">Downloads</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Download Location</strong>
+              <p id="set-download-path" class="setting-path">Loading…</p>
+            </div>
+            <button id="set-btn-choose-dl" class="btn" type="button">Change…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Ask Where to Save Each File</strong>
+              <p>Prompt for a download folder before each download starts.</p>
+            </div>
+            <input id="set-dl-ask" type="checkbox" />
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Clear Download History</strong>
+              <p>Remove downloaded files from the history list (does not delete files on disk).</p>
+            </div>
+            <button id="set-btn-clear-dl" class="btn danger" type="button">Clear History</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Privacy and Security -->
+      <section class="settings-pane" id="pane-privacy" hidden>
+        <h2 class="pane-title">Privacy and Security</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Export Database Backup</strong>
+              <p>Save an unencrypted copy of BOBO’s local database and its checksum manifest. Keep both files together. Cookies, downloaded files and separate settings are excluded.</p>
+              <p id="set-backup-status" role="status"></p>
+            </div>
+            <button id="set-btn-backup" class="btn" type="button">Export Backup…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Restore Database Backup</strong>
+              <p>Restart BOBO to choose a backup and replace the current database. BOBO retains a copy of the previous database.</p>
+              <p id="set-restore-status" role="status"></p>
+            </div>
+            <button id="set-btn-restore" class="btn danger" type="button">Restart to Restore…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Clear Browsing Data</strong>
+              <p>Clear page cache, cookies, local storage or browsing history.</p>
+            </div>
+            <button id="set-btn-clear-privacy" class="btn danger" type="button">Clear Data…</button>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Chromium Process Sandboxing</strong>
+              <p>Every remote website runs inside an isolated, unprivileged process sandbox.</p>
+            </div>
+            <span class="status-chip is-ok">Active</span>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Strict Certificate Validation</strong>
+              <p>Untrusted, expired or revoked TLS/SSL certificates are unconditionally rejected.</p>
+            </div>
+            <span class="status-chip is-ok">Enforced</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Website Permissions -->
+      <section class="settings-pane" id="pane-permissions" hidden>
+        <h2 class="pane-title">Website Permissions</h2>
+        <div class="settings-card">
+          <div class="security-notice">
+            <strong>Hardware &amp; Sensor Protection</strong>
+            <p>BOBO enforces strict zero-trust permission defaults. All sensor, device and notification requests from web content are blocked outright.</p>
+          </div>
+          <div class="setting-row">
+            <div><strong>Location</strong><p>Access to physical device coordinates</p></div>
+            <span class="status-chip is-blocked">Blocked</span>
+          </div>
+          <div class="setting-row">
+            <div><strong>Camera &amp; Microphone</strong><p>Audio/video recording hardware</p></div>
+            <span class="status-chip is-blocked">Blocked</span>
+          </div>
+          <div class="setting-row">
+            <div><strong>Notifications</strong><p>Desktop notifications from websites</p></div>
+            <span class="status-chip is-blocked">Blocked</span>
+          </div>
+          <div class="setting-row">
+            <div><strong>Popups &amp; Window Opening</strong><p>Unsolicited popup windows</p></div>
+            <span class="status-chip is-blocked">Blocked</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Passwords and Autofill -->
+      <section class="settings-pane" id="pane-passwords" hidden>
+        <h2 class="pane-title">Password Manager</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Save Passwords</strong>
+              <p>Offer to save after sign-in. Encrypt identifiers and passwords for your Windows account. Focus an empty saved login form to choose an account; BOBO never submits it.</p>
+            </div>
+            <input id="passwords-enabled" type="checkbox" aria-label="Enable password saving and filling" disabled />
+          </div>
+          <p id="passwords-status" role="status" aria-live="polite">Checking Windows protected storage…</p>
+          <button id="passwords-refresh" class="btn" type="button">Refresh Saved Accounts</button>
+          <div id="passwords-accounts"></div>
+          <h3>Never Save</h3>
+          <div id="passwords-never"></div>
+        </div>
+        <dialog id="passwords-editor" aria-labelledby="passwords-editor-title">
+          <form id="passwords-edit-form" autocomplete="off">
+            <h3 id="passwords-editor-title">Saved Account</h3>
+            <p id="passwords-edit-origin"></p>
+            <p><label>Username, email or CNIC <input id="passwords-username" type="text" maxlength="512" required autocomplete="off" /></label></p>
+            <p><label>Password <input id="passwords-secret" type="password" maxlength="4096" required autocomplete="off" /></label></p>
+            <p>Locks after 30 seconds, when you leave this page, or when BOBO loses focus.</p>
+            <button id="passwords-reveal" class="btn" type="button">Reveal Password</button>
+            <button class="btn" type="submit">Save Changes</button>
+            <button id="passwords-close" class="btn" type="button">Close and Lock</button>
+          </form>
+        </dialog>
+      </section>
+
+      <!-- 11. Personal Tools -->
+      <section class="settings-pane" id="pane-tools" hidden>
+        <h2 class="pane-title">Personal Tools</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Reader Text Size</strong>
+              <p>Text size used when reading simplified articles in Page Reader.</p>
+            </div>
+            <div class="font-slider-row">
+              <input id="set-reader-font" type="range" min="13" max="24" step="1" />
+              <output id="set-reader-font-val">17px</output>
+            </div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Quick Notes Storage</strong>
+              <p>Export notes or delete local quick notes.</p>
+            </div>
+            <button id="set-btn-clear-notes" class="btn danger" type="button">Clear Notes…</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. Browser Data -->
+      <section class="settings-pane" id="pane-data" hidden>
+        <h2 class="pane-title">Browser Data</h2>
+        <div class="settings-card">
+          <div class="setting-row">
+            <div>
+              <strong>Local Database (SQLite)</strong>
+              <p id="set-db-path" class="setting-path">userData/bobo.db</p>
+            </div>
+            <span class="status-chip is-ok">Healthy</span>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Tools Data Storage</strong>
+              <p id="set-tools-path" class="setting-path">userData/tools/</p>
+            </div>
+            <span class="status-chip is-ok">Healthy</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. About BOBO -->
+      <section class="settings-pane" id="pane-about" hidden>
+        <h2 class="pane-title">About BOBO</h2>
+        <div class="settings-card about-card">
+          <img src="../assets/logo/BOBO_Arctic_Frost/BOBO_Arctic_Frost_Emblem_Transparent_1024.png"
+               alt="BOBO" width="80" height="80" class="about-logo" />
+          <div class="about-text">
+            <h3>BOBO — The AI-Native Browser</h3>
+            <p class="about-tagline">Your Browser. Your AI Buddy.</p>
+            <p class="about-version">Version 0.1.5 (Windows 64-bit)</p>
+            <span class="status-chip is-ok">Up to date</span>
+          </div>
+        </div>
+        <div class="settings-card">
+          <p class="about-copyright">Design Identity: BOBO Arctic Frost</p>
+          <p class="about-legal">Built with Electron, Chromium, and native JavaScript. Privacy by design: no telemetry, no tracking, strict sandboxing.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="settings.js"></script>
+  <script src="passwords.js"></script>
+</body>
+</html>

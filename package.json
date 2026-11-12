@@ -1,0 +1,29 @@
+{
+  "name": "bobo",
+  "productName": "BOBO",
+  "version": "0.1.5",
+  "private": true,
+  "description": "BOBO - The AI-Native Browser. Your Browser. Your AI Buddy.",
+  "license": "UNLICENSED",
+  "author": {
+    "name": "BOBO"
+  },
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "test": "node --test \"tests/unit/*.test.js\"",
+    "smoke": "electron tests/e2e/branding-smoke.js && electron tests/e2e/tabs-smoke.js && electron tests/e2e/tools-smoke.js && electron tests/e2e/newtab-smoke.js",
+    "prepare:hooks": "git config core.hooksPath .githooks"
+  },
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^8.0.1",
+    "@electron-forge/maker-squirrel": "^8.0.1",
+    "@electron-forge/maker-zip": "^8.0.1",
+    "electron": "^45.2.1"
+  }
+}

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>BOBO Library</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="library-page">
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="lib-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" />
+      </symbol>
+      <symbol id="lib-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.6 7.2a2 2 0 0 1 2-2h3.1l1.8 2h7.9a2 2 0 0 1 2 2v7.6a2 2 0 0 1-2 2H5.6a2 2 0 0 1-2-2z" />
+      </symbol>
+      <symbol id="lib-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8.5" /><path d="M12 7.6V12l3 1.8" />
+      </symbol>
+      <symbol id="lib-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4v10.2" /><path d="m7.6 10.4 4.4 4.4 4.4-4.4" /><path d="M5 19.5h14" />
+      </symbol>
+      <symbol id="lib-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 6.6h15" /><path d="M9.4 6.6V4.9h5.2v1.7" />
+        <path d="M6.4 6.6l.9 13.1a1.5 1.5 0 0 0 1.5 1.4h6.4a1.5 1.5 0 0 0 1.5-1.4l.9-13.1" />
+      </symbol>
+      <symbol id="lib-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M12 5.4v13.2M5.4 12h13.2" />
+      </symbol>
+      <symbol id="lib-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m5 19 1-4.2L16.4 4.4a1.7 1.7 0 0 1 2.4 0l.8.8a1.7 1.7 0 0 1 0 2.4L9.2 18z" /><path d="m14.6 6.2 3.2 3.2" />
+      </symbol>
+      <symbol id="lib-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M13.4 5.2h5.4v5.4" /><path d="M18.8 5.2 11 13" />
+        <path d="M17 14.2v3.6a1.8 1.8 0 0 1-1.8 1.8H6.4a1.8 1.8 0 0 1-1.8-1.8V8.8A1.8 1.8 0 0 1 6.4 7h3.7" />
+      </symbol>
+      <symbol id="lib-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M9.4 6.4v11.2M14.6 6.4v11.2" />
+      </symbol>
+      <symbol id="lib-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8.6 5.8 18 12l-9.4 6.2z" />
+      </symbol>
+      <symbol id="lib-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M6.4 6.4l11.2 11.2M17.6 6.4 6.4 17.6" />
+      </symbol>
+      <symbol id="lib-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="6.3" /><path d="M15.7 15.7 20.3 20.3" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="library-head">
+    <img src="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" alt="" />
+    <span class="library-name">BOBO Library</span>
+    <nav class="library-nav" aria-label="Library sections">
+      <button class="library-tab" type="button" data-view="bookmarks">Bookmarks</button>
+      <button class="library-tab" type="button" data-view="history">History</button>
+      <button class="library-tab" type="button" data-view="downloads">Downloads</button>
+    </nav>
+  </header>
+
+  <main class="library-main">
+    <!-- ---------------------------------------------------------- bookmarks -->
+    <section class="library-section" data-section="bookmarks">
+      <div class="library-toolbar">
+        <input id="bm-search" class="tp-input" type="search" placeholder="Search bookmarks" autocomplete="off" aria-label="Search bookmarks" />
+        <button id="bm-add" class="btn" type="button">Add bookmark</button>
+        <button id="bm-add-folder" class="btn" type="button">New folder</button>
+        <button id="bm-import" class="btn" type="button">Import HTML</button>
+        <button id="bm-export" class="btn" type="button">Export HTML</button>
+      </div>
+
+      <form id="bm-form" class="library-toolbar" hidden>
+        <input id="bm-form-title" class="tp-input" type="text" placeholder="Title (optional)" autocomplete="off" aria-label="Bookmark title" />
+        <input id="bm-form-url" class="tp-input" type="text" placeholder="https://example.com" autocomplete="off" aria-label="Bookmark address" />
+        <select id="bm-form-folder" class="tp-select" aria-label="Bookmark folder"></select>
+        <button class="btn primary" type="submit">Save</button>
+        <button class="btn" type="button" data-cancel-form="bm-form">Cancel</button>
+      </form>
+
+      <form id="bm-folder-form" class="library-toolbar" hidden>
+        <input id="bm-folder-name" class="tp-input" type="text" placeholder="Folder name" autocomplete="off" aria-label="Folder name" />
+        <select id="bm-folder-parent" class="tp-select" aria-label="Parent folder"></select>
+        <button class="btn primary" type="submit">Create folder</button>
+        <button class="btn" type="button" data-cancel-form="bm-folder-form">Cancel</button>
+      </form>
+
+      <p id="bm-status" class="library-hint" role="status" aria-live="polite"></p>
+      <div id="bm-tree" class="library-tree"></div>
+    </section>
+
+    <!-- ------------------------------------------------------------ history -->
+    <section class="library-section" data-section="history" hidden>
+      <div class="library-toolbar">
+        <input id="hs-search" class="tp-input" type="search" placeholder="Search history" autocomplete="off" aria-label="Search history" />
+        <select id="hs-range" class="tp-select" aria-label="History range to clear">
+          <option value="hour">Last hour</option>
+          <option value="day">Last 24 hours</option>
+          <option value="week">Last 7 days</option>
+          <option value="month">Last 4 weeks</option>
+          <option value="all">All history</option>
+        </select>
+        <button id="hs-clear" class="btn danger" type="button">Clear history</button>
+      </div>
+      <p id="hs-status" class="library-hint" role="status" aria-live="polite"></p>
+      <ul id="hs-list" class="library-list"></ul>
+      <button id="hs-more" class="btn" type="button" hidden>Show more</button>
+    </section>
+
+    <!-- ---------------------------------------------------------- downloads -->
+    <section class="library-section" data-section="downloads" hidden>
+      <div class="library-toolbar">
+        <span id="dl-folder" class="library-hint"></span>
+        <button id="dl-choose" class="btn" type="button">Choose folder</button>
+        <button id="dl-clear" class="btn danger" type="button">Clear list</button>
+      </div>
+      <p id="dl-status" class="library-hint" role="status" aria-live="polite"></p>
+      <ul id="dl-list" class="library-list"></ul>
+    </section>
+  </main>
+
+  <script src="library.js"></script>
+</body>
+</html>

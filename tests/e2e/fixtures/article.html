@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BOBO Reader fixture</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 40px; max-width: 720px; }
+  </style>
+</head>
+<body>
+  <nav><a href="/">Home</a> | <a href="/about">About</a></nav>
+  <main>
+    <h1>Arctic Frost article</h1>
+    <p>The Arctic Frost palette uses Snow White, Ice Blue, Steel Blue and Deep Navy.</p>
+    <p>This paragraph exists so the Reader has real article text to extract and present.</p>
+    <h2>Readable content</h2>
+    <p>Reader mode should return this sentence, and it should not return form values.</p>
+    <form action="/signin" method="post">
+      <label>Password <input type="password" name="password" value="hunter2" /></label>
+      <input type="hidden" name="token" value="SECRET-TOKEN" />
+      <input type="text" name="username" value="private-user" />
+      <button type="submit">Submit now please</button>
+    </form>
+    <script>window.__leak = 'SCRIPT-LEAK';</script>
+  </main>
+  <footer>Footer text must be dropped by Reader.</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+:root { color-scheme: light dark; font-family: "Segoe UI", sans-serif; color: #192734; background: #eef6fb; }
+body { margin: 0; padding: 36px 28px; background: radial-gradient(at top left, #d4f2ed, transparent 65%); min-height: calc(100vh - 72px); }
+header { text-align: center; max-width: 620px; margin: auto; }
+h1 { font-size: 27px; font-weight: 500; }
+p { line-height: 1.6; }
+#profiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; max-width: 1120px; margin: 36px auto; }
+.profile-card { position: relative; background: #ffffffb8; border: 1px solid #bfd4df; border-radius: 12px; overflow: hidden; }
+.profile-open { width: 100%; min-height: 200px; padding: 28px 16px 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border: 0; border-radius: 0; background: transparent; }
+.profile-open:hover { background: #dceef8; }
+.profile-name { overflow-wrap: anywhere; }
+.profile-avatar { display: grid; place-items: center; width: 76px; height: 76px; border-radius: 50%; color: white; font-size: 32px; }
+.profile-edit { position: absolute; top: 6px; right: 6px; padding: 4px 8px; border: 0; background: transparent; }
+button, input, select { font: inherit; color: inherit; border-radius: 7px; border: 1px solid #aac6d7; background: #fff; padding: 9px 14px; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #287ca7; outline-offset: 2px; }
+button:disabled { cursor: wait; opacity: .6; }
+.profile-add { border: 1px dashed #aac6d7; min-height: 200px; font-size: 19px; }
+#profile-status { text-align: center; }
+dialog { width: min(360px, calc(100vw - 72px)); padding: 24px; border: 1px solid #aac6d7; border-radius: 14px; background: #eef6fb; color: inherit; }
+dialog::backdrop { background: #10202b88; }
+form { display: grid; gap: 10px; }
+footer { display: flex; justify-content: flex-end; gap: 10px; }
+@media (prefers-color-scheme: dark) {
+  :root { background: #172633; color: #f1faff; }
+  body { background: radial-gradient(at top left, #23424e, transparent 65%); }
+  .profile-card, button, input, select, dialog { background: #223444; border-color: #567489; }
+  .profile-open { background: transparent; }
+  .profile-open:hover { background: #2b4052; }
+}

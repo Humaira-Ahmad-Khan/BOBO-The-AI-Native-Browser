@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https: http:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>BOBO</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="chrome-page">
+  <!-- Icon sprite: every icon in the chrome UI is defined here. -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19.5 12H5" /><path d="M12 18.5 5.5 12 12 5.5" />
+      </symbol>
+      <symbol id="i-forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 12H19" /><path d="M12 5.5 18.5 12 12 18.5" />
+      </symbol>
+      <symbol id="i-reload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.5 12a8.5 8.5 0 1 1-2.49-6.01" /><path d="M20.5 4v5h-5" />
+      </symbol>
+      <symbol id="i-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.5 6.5 17.5 17.5M17.5 6.5 6.5 17.5" />
+      </symbol>
+      <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 11.4 12 4.5l8.5 6.9" /><path d="M5.8 10.4V19.5h12.4v-9.1" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5.5v13M5.5 12h13" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6.5 6.5 17.5 17.5M17.5 6.5 6.5 17.5" />
+      </symbol>
+      <symbol id="i-sidebar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="4.5" width="17" height="15" rx="3" /><path d="M9.5 4.5v15" />
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5" /><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" />
+      </symbol>
+      <symbol id="i-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8.5" /><path d="M12 7.8v4.7" /><path d="M12 16.1h.01" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="6.3" /><path d="M15.7 15.7 20.3 20.3" />
+      </symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 3.5 12.8 8.7 18 10.5l-5.2 1.8L11 17.5 9.2 12.3 4 10.5l5.2-1.8z" />
+        <path d="M18 15.4l.75 2.05L20.8 18.2l-2.05.75L18 21l-.75-2.05L15.2 18.2l2.05-.75z" />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.6A8.6 8.6 0 0 1 9.4 4 8.6 8.6 0 1 0 20 14.6z" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1.6" /><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6" />
+        <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6" /><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6" />
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.5 8.8h3l1.4-2.4h8.2l1.4 2.4h3v9.2a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.5-1.5z" />
+        <circle cx="12" cy="13.2" r="3.4" />
+      </symbol>
+      <symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3.5h8.4L19 8.1v12.4H6z" /><path d="M14 3.5V8h4.6" />
+        <path d="M9.2 12.4h6.4M9.2 16h4.4" />
+      </symbol>
+      <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.6 5.2h4.6a3.8 3.8 0 0 1 3.8 3.8v10a2.8 2.8 0 0 0-2.8-2.8H3.6z" />
+        <path d="M20.4 5.2h-4.6A3.8 3.8 0 0 0 12 9v10a2.8 2.8 0 0 1 2.8-2.8h5.6z" />
+      </symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3.1" />
+        <path d="M12 3.4v2.1M12 18.5v2.1M4.6 12H2.5M21.5 12h-2.1M6.8 6.8 5.3 5.3M18.7 18.7l-1.5-1.5M17.2 6.8l1.5-1.5M5.3 18.7l1.5-1.5" />
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8.5" y="8.5" width="11.5" height="11.5" rx="2.2" />
+        <path d="M15.5 8.5V6.2A2.2 2.2 0 0 0 13.3 4H6.2A2.2 2.2 0 0 0 4 6.2v7.1a2.2 2.2 0 0 0 2.2 2.2h2.3" />
+      </symbol>
+      <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 3.8h10.6L20.2 8.4v11.8H5z" /><path d="M8.6 3.8v5.4h6.8V3.8" />
+        <path d="M8.6 20.2v-6h6.8v6" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 6.6h15" /><path d="M9.4 6.6V4.9h5.2v1.7" />
+        <path d="M6.4 6.6l.9 13.1a1.5 1.5 0 0 0 1.5 1.4h6.4a1.5 1.5 0 0 0 1.5-1.4l.9-13.1" />
+        <path d="M10.4 10.4v6.7M13.6 10.4v6.7" />
+      </symbol>
+      <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" />
+      </symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.6 7.2a2 2 0 0 1 2-2h3.1l1.8 2h7.9a2 2 0 0 1 2 2v7.6a2 2 0 0 1-2 2H5.6a2 2 0 0 1-2-2z" />
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="8.5" /><path d="M12 7.6V12l3 1.8" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 4v10.2" /><path d="m7.6 10.4 4.4 4.4 4.4-4.4" /><path d="M5 19.5h14" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.5 3.8 20.2 9.5l-2 2-1.1-.5-3.5 3.5.3 3.1-1.4 1.4-3.1-3.1-3.9 3.9-1.4-1.4 3.9-3.9L4.9 11l1.4-1.4 3.1.3L12.9 6l-.5-1.1z" />
+      </symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 9.5h3l4-3.2v11.4l-4-3.2h-3z" /><path d="M15 9.2a4 4 0 0 1 0 5.6" /><path d="M17.5 6.6a7.5 7.5 0 0 1 0 10.8" />
+      </symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 9.5h3l4-3.2v11.4l-4-3.2h-3z" /><path d="m15.2 9.4 5 5M20.2 9.4l-5 5" />
+      </symbol>
+      <symbol id="i-more" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="5" r="1.8" /><circle cx="12" cy="12" r="1.8" /><circle cx="12" cy="19" r="1.8" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3s7 3 7 9c0 5.5-4.5 9-7 10-2.5-1-7-4.5-7-10 0-6 7-9 7-9z" />
+        <path d="m9 12 2 2 4-4" />
+      </symbol>
+      <symbol id="i-window" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" /><path d="M3.5 9.5h17" />
+      </symbol>
+      <symbol id="i-fullscreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" />
+      </symbol>
+      <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9V3h12v6" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="7" rx="1" />
+      </symbol>
+      <symbol id="i-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13" />
+      </symbol>
+      <symbol id="i-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+      </symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.8 31.8 0 0 0 0 12a31.8 31.8 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div id="chrome">
+    <header id="titlebar">
+      <div id="tabs-track">
+        <div id="tabs" role="tablist" aria-label="Open tabs"></div>
+        <button id="new-tab" class="icon-btn tab-plus" type="button" data-action="new-tab" title="New tab (Ctrl+T)" aria-label="New tab">
+          <svg><use href="#i-plus" /></svg>
+        </button>
+      </div>
+      <div id="caption-space"></div>
+    </header>
+
+    <div id="toolbar">
+      <div class="nav-group">
+        <button id="btn-back" class="icon-btn" type="button" data-action="back" title="Back (Alt+Left)" aria-label="Back" disabled>
+          <svg><use href="#i-back" /></svg>
+        </button>
+        <button id="btn-forward" class="icon-btn" type="button" data-action="forward" title="Forward (Alt+Right)" aria-label="Forward" disabled>
+          <svg><use href="#i-forward" /></svg>
+        </button>
+        <button id="btn-reload" class="icon-btn" type="button" data-action="reload" title="Reload (Ctrl+R)" aria-label="Reload">
+          <svg><use href="#i-reload" /></svg>
+        </button>
+        <button id="btn-home" class="icon-btn" type="button" data-action="home" title="BOBO home" aria-label="BOBO home">
+          <svg><use href="#i-home" /></svg>
+        </button>
+      </div>
+
+      <div id="omnibox">
+        <span id="site-info" title="Search"><svg><use href="#i-search" /></svg></span>
+        <input id="omnibox-input" type="text" spellcheck="false" autocomplete="off"
+               placeholder="Search Google or type a URL" aria-label="Address and search bar" />
+        <button id="ai-chip" class="chip-btn" type="button" hidden disabled>
+          <svg><use href="#i-sparkle" /></svg><span>AI</span>
+        </button>
+      </div>
+
+      <div class="toolbar-actions">
+        <button id="btn-page-zoom" class="btn" type="button" title="Reset page zoom to 100% (Ctrl+0)" aria-label="Reset page zoom" hidden>100%</button>
+        <select id="btn-youtube-appearance" class="tp-select" aria-label="YouTube theme" title="YouTube theme" hidden>
+          <option value="default">YouTube theme</option>
+          <option value="dark">Dark theme</option>
+          <option value="light">Light theme</option>
+        </select>
+        <button id="btn-star" class="icon-btn star-btn" type="button" title="Bookmark this page (Ctrl+D)" aria-label="Bookmark this page" aria-pressed="false">
+          <svg><use href="#i-star" /></svg>
+        </button>
+        <button id="btn-shields" class="icon-btn shields-btn is-protected" type="button" title="BOBO Shields — Protection Active" aria-label="BOBO Shields" aria-pressed="false">
+          <svg><use href="#i-shield" /></svg>
+        </button>
+        <button id="btn-downloads" class="icon-btn downloads-btn" type="button" title="Downloads (Ctrl+J)" aria-label="Downloads" aria-haspopup="true" aria-expanded="false">
+          <svg><use href="#i-download" /></svg>
+          <span id="downloads-badge" class="downloads-badge" hidden></span>
+        </button>
+        <!-- Pinned tools, rendered by tools.js from the saved settings. -->
+        <div id="pinned-tools" class="pinned-tools" role="group" aria-label="Pinned BOBO tools"></div>
+        <button id="btn-tools" class="icon-btn" type="button" data-action="tools"
+                title="BOBO Tools" aria-label="Toggle BOBO Tools" aria-pressed="false">
+          <svg><use href="#i-grid" /></svg>
+        </button>
+        <button id="btn-sidebar" class="icon-btn" type="button" data-action="sidebar"
+                title="BOBO sidebar" aria-label="Toggle BOBO sidebar" aria-pressed="false">
+          <svg><use href="#i-sidebar" /></svg>
+        </button>
+        <button id="btn-menu" class="icon-btn menu-btn" type="button" title="Customize and control BOBO" aria-label="Main menu" aria-haspopup="true" aria-expanded="false">
+          <svg><use href="#i-more" /></svg>
+        </button>
+      </div>
+
+      <div id="progress" aria-hidden="true"><span></span></div>
+
+      <!-- Three-Dot Dropdown Menu (Chrome Style) -->
+      <div id="chrome-menu" class="chrome-dropdown-menu" role="menu" aria-label="BOBO Menu" hidden>
+        <!-- Window and Tabs -->
+        <div class="menu-section">
+          <button class="menu-item" type="button" data-action="menu-new-tab">
+            <svg><use href="#i-plus" /></svg>
+            <span>New Tab</span>
+            <kbd>Ctrl+T</kbd>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-new-window">
+            <svg><use href="#i-window" /></svg>
+            <span>New Window</span>
+            <kbd>Ctrl+N</kbd>
+          </button>
+          <button class="menu-item" type="button" disabled>
+            <svg><use href="#i-lock" /></svg>
+            <span>Private browsing unavailable</span>
+            <kbd>Ctrl+Shift+N</kbd>
+          </button>
+        </div>
+        <div class="menu-divider"></div>
+
+        <!-- Browser Data -->
+        <div class="menu-section">
+          <button class="menu-item" type="button" data-action="menu-bookmarks">
+            <svg><use href="#i-star" /></svg>
+            <span>Bookmarks and lists</span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-import-bookmarks">
+            <svg><use href="#i-star" /></svg>
+            <span>Import Bookmarks &amp; Favourites</span>
+          </button>
+            <button class="menu-item" type="button" data-action="menu-recently-closed">
+              <svg><use href="#i-clock" /></svg>
+              <span>Recently closed tabs</span><kbd>Ctrl+Shift+T</kbd>
+            </button>
+            <button class="menu-item" type="button" data-action="menu-history">
+            <svg><use href="#i-clock" /></svg>
+            <span>History</span>
+            <kbd>Ctrl+H</kbd>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-downloads">
+            <svg><use href="#i-download" /></svg>
+            <span>Downloads</span>
+            <kbd>Ctrl+J</kbd>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-passwords" title="Manage saved accounts and password saving">
+            <svg><use href="#i-lock" /></svg>
+            <span>Passwords and Autofill</span>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-profiles" title="Add or switch browser profiles">
+            <svg><use href="#i-sun" /></svg>
+            <span>Browser Profiles</span>
+            <span id="current-profile-name" class="menu-badge">Default</span>
+          </button>
+        </div>
+        <div class="menu-divider"></div>
+
+        <!-- Tools -->
+        <div class="menu-section">
+          <button class="menu-item" type="button" data-action="menu-tools">
+            <svg><use href="#i-grid" /></svg>
+            <span>BOBO Personal Tools</span>
+          </button>
+          <button class="menu-item" type="button" data-tool-open="settings">
+            <svg><use href="#i-grid" /></svg>
+            <span>Manage tools</span>
+          </button>
+          <div data-menu-tools></div>
+        </div>
+        <div class="menu-divider"></div>
+
+        <!-- Browser Controls -->
+        <div class="menu-section">
+          <div class="menu-row zoom-row">
+            <span class="zoom-label">Zoom</span>
+            <div class="zoom-stepper">
+              <button id="menu-zoom-out" class="stepper-btn" type="button" title="Zoom out (Ctrl+-)" aria-label="Zoom out">&minus;</button>
+              <button id="menu-zoom-reset" class="stepper-val" type="button" title="Reset zoom (Ctrl+0)" aria-label="Reset zoom">100%</button>
+              <button id="menu-zoom-in" class="stepper-btn" type="button" title="Zoom in (Ctrl++)" aria-label="Zoom in">&plus;</button>
+              <button id="menu-fullscreen" class="stepper-btn" type="button" title="Full screen (F11)" aria-label="Full screen">
+                <svg><use href="#i-fullscreen" /></svg>
+              </button>
+            </div>
+          </div>
+          <button class="menu-item" type="button" data-action="menu-print">
+            <svg><use href="#i-print" /></svg>
+            <span>Print…</span>
+            <kbd>Ctrl+P</kbd>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-find">
+            <svg><use href="#i-search" /></svg>
+            <span>Find in Page…</span>
+            <kbd>Ctrl+F</kbd>
+          </button>
+        </div>
+        <div class="menu-divider"></div>
+
+        <!-- Privacy and Settings -->
+        <div class="menu-section">
+          <button class="menu-item" type="button" data-action="menu-shields">
+            <svg><use href="#i-shield" /></svg>
+            <span>BOBO Shields</span>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-permissions">
+            <svg><use href="#i-lock" /></svg>
+            <span>Website Permissions</span>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-clear-data">
+            <svg><use href="#i-trash" /></svg>
+            <span>Clear Browsing Data…</span>
+            <kbd>Ctrl+Shift+Del</kbd>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-settings">
+            <svg><use href="#i-gear" /></svg>
+            <span>Settings</span>
+          </button>
+        </div>
+        <div class="menu-divider"></div>
+
+        <!-- Application -->
+        <div class="menu-section">
+          <button class="menu-item" type="button" data-action="menu-about">
+            <img src="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" alt="" width="16" height="16" />
+            <span>About BOBO</span>
+          </button>
+          <button class="menu-item" type="button" data-action="menu-exit">
+            <svg><use href="#i-close" /></svg>
+            <span>Exit</span>
+            <kbd>Alt+F4</kbd>
+          </button>
+        </div>
+      </div>
+
+      <!-- BOBO Shields Popover -->
+      <div id="shields-popup" class="shields-dropdown" role="dialog" aria-label="BOBO Shields" hidden>
+        <div class="shields-header">
+          <div class="shields-title-wrap">
+            <svg class="shields-badge-icon"><use href="#i-shield" /></svg>
+            <div>
+              <strong class="shields-title">BOBO Shields</strong>
+              <p id="shields-page-url" class="shields-subtitle">Local protection active</p>
+            </div>
+          </div>
+          <span class="shields-status-pill">Active</span>
+        </div>
+        <div class="shields-list">
+          <div class="shields-item">
+            <div class="shields-item-info">
+              <span class="shields-item-title">Connection</span>
+              <span id="shields-connection-detail" class="shields-item-detail">HTTPS Encrypted</span>
+            </div>
+            <span id="shields-connection-tag" class="shields-tag is-ok">Secure</span>
+          </div>
+          <div class="shields-item">
+            <div class="shields-item-info">
+              <span class="shields-item-title">Web Permissions</span>
+              <span class="shields-item-detail">Camera, Mic, Location, Notifications</span>
+            </div>
+            <span class="shields-tag is-blocked">Blocked</span>
+          </div>
+          <div class="shields-item">
+            <div class="shields-item-info">
+              <span class="shields-item-title">Chromium Sandbox</span>
+              <span class="shields-item-detail">Isolated WebContents process</span>
+            </div>
+            <span class="shields-tag is-ok">Enforced</span>
+          </div>
+          <div class="shields-item">
+            <div class="shields-item-info">
+              <span class="shields-item-title">Telemetry & Privacy</span>
+              <span class="shields-item-detail">No data leaves your device</span>
+            </div>
+            <span class="shields-tag is-ok">Zero Leak</span>
+          </div>
+        </div>
+        <div class="shields-actions">
+          <button id="shields-btn-perms" class="btn" type="button">Permissions</button>
+          <button id="shields-btn-clear" class="btn danger" type="button">Clear Data</button>
+        </div>
+      </div>
+
+      <!-- Chrome-Style Downloads Popup Bubble -->
+      <div id="download-popup" class="download-popup" role="dialog" aria-modal="true" aria-label="Recent Downloads" hidden>
+        <div class="dl-popup-header">
+          <strong>Downloads</strong>
+          <div class="dl-popup-header-actions">
+            <button id="dl-popup-clear" class="btn-subtle" type="button" title="Clear completed">Clear</button>
+            <button id="dl-popup-show-all" class="btn-subtle" type="button" title="Open full downloads page">Show all (Ctrl+J)</button>
+          </div>
+        </div>
+        <div id="dl-popup-list" class="dl-popup-list" role="list"></div>
+        <div id="dl-popup-empty" class="dl-popup-empty">
+          <svg><use href="#i-download" /></svg>
+          <p>No recent downloads</p>
+        </div>
+      </div>
+
+      <!-- Chrome-Style Bookmark Editor Popup -->
+      <div id="bookmark-editor-popup" class="bookmark-editor-popup" role="dialog" aria-modal="true" aria-label="Bookmark Editor" hidden>
+        <div class="bm-popup-header">
+          <svg class="bm-star-icon is-on"><use href="#i-star" /></svg>
+          <strong id="bm-popup-title">Bookmark added</strong>
+        </div>
+        <div class="bm-popup-body">
+          <label class="bm-popup-field">
+            <span>Name</span>
+            <input id="bm-popup-name" type="text" autocomplete="off" />
+          </label>
+          <label class="bm-popup-field">
+            <span>Folder</span>
+            <select id="bm-popup-folder" class="tp-select"></select>
+          </label>
+        </div>
+        <div class="bm-popup-footer">
+          <button id="bm-popup-remove" class="btn danger" type="button">Remove</button>
+          <div class="modal-spacer"></div>
+          <button id="bm-popup-done" class="btn primary" type="button">Done</button>
+        </div>
+      </div>
+
+      <!-- Bookmarks Bar Folder Dropdown Menu -->
+      <div id="bm-folder-menu" class="bm-folder-menu" role="menu" hidden></div>
+
+      <!-- Tab Group Context Menu Popup -->
+      <div id="tab-group-menu" class="context-popup" role="menu" hidden>
+        <div class="context-popup-header">
+          <input id="tg-menu-name" class="tg-menu-input" type="text" placeholder="Group Name" />
+        </div>
+        <div class="tg-colors-palette">
+          <button class="tg-color-dot" data-color="blue" style="--c:#3b82f6" title="Blue"></button>
+          <button class="tg-color-dot" data-color="grey" style="--c:#9ca3af" title="Grey"></button>
+          <button class="tg-color-dot" data-color="red" style="--c:#ef4444" title="Red"></button>
+          <button class="tg-color-dot" data-color="yellow" style="--c:#f59e0b" title="Yellow"></button>
+          <button class="tg-color-dot" data-color="green" style="--c:#10b981" title="Green"></button>
+          <button class="tg-color-dot" data-color="pink" style="--c:#ec4899" title="Pink"></button>
+          <button class="tg-color-dot" data-color="purple" style="--c:#8b5cf6" title="Purple"></button>
+          <button class="tg-color-dot" data-color="cyan" style="--c:#06b6d4" title="Cyan"></button>
+          <button class="tg-color-dot" data-color="orange" style="--c:#f97316" title="Orange"></button>
+        </div>
+        <div class="menu-divider"></div>
+        <button id="tg-menu-new-tab" class="menu-item" type="button">New tab in group</button>
+        <button id="tg-menu-save" class="menu-item" type="button">Save group</button>
+        <button id="tg-menu-ungroup" class="menu-item" type="button">Ungroup</button>
+        <button id="tg-menu-close" class="menu-item" type="button">Close group</button>
+      </div>
+    </div>
+
+    <div id="omnibox-suggestions" class="search-suggestions" role="listbox" aria-label="Address suggestions" hidden></div>
+    <nav id="bookmarks-bar" class="bookmarks-bar" aria-label="Bookmarks bar" hidden></nav>
+
+    <!-- The native page view starts below this row when it is visible. -->
+    <div id="find-bar-row" class="find-bar-row" hidden>
+      <div class="find-box" role="search" aria-label="Find in page">
+        <input id="find-input" type="text" aria-label="Find text" placeholder="Find in page" maxlength="4096" spellcheck="false" autocomplete="off" />
+        <span id="find-count" class="find-count" aria-live="polite"></span>
+        <label class="find-case" title="Match case">
+          <input id="find-case" type="checkbox" aria-label="Match case" /> Aa
+        </label>
+        <button id="find-prev" class="find-btn" type="button" title="Previous (Shift+Enter or Shift+F3)" aria-label="Previous match">
+          <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="find-next" class="find-btn" type="button" title="Next (Enter or F3)" aria-label="Next match">
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="find-close" class="find-btn find-close" type="button" title="Close (Escape)" aria-label="Close find bar">
+          <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="body">
+      <aside id="sidebar" aria-label="BOBO sidebar">
+        <div class="side-head">
+          <img src="../assets/logo/BOBO_Arctic_Frost/BOBO_Arctic_Frost_64.png" alt="" width="22" height="22" />
+          <span>BOBO</span>
+        </div>
+        <section id="sidebar-bookmarks" class="sidebar-bookmarks" aria-label="Bookmarks" hidden></section>
+
+        <button class="side-item" type="button" data-action="new-tab">
+          <svg><use href="#i-plus" /></svg><span>New tab</span><kbd>Ctrl+T</kbd>
+        </button>
+        <button class="side-item" type="button" data-action="reload">
+          <svg><use href="#i-reload" /></svg><span>Reload</span><kbd>Ctrl+R</kbd>
+        </button>
+        <button class="side-item" type="button" data-action="home">
+          <svg><use href="#i-home" /></svg><span>BOBO home</span>
+        </button>
+
+        <h3 class="side-label">Tools</h3>
+        <button class="side-item" id="sidebar-manage-tools" type="button" data-tool-open="settings">
+          <svg><use href="#i-grid" /></svg><span>Manage tools</span>
+        </button>
+        <div class="side-tools" data-side-tools></div>
+
+        <h3 class="side-label">Quick links</h3>
+        <div class="side-links">
+          <button class="side-item" type="button" data-url="https://duckduckgo.com">
+            <span class="favicon-letter tint-duckduckgo">D</span><span>DuckDuckGo</span>
+          </button>
+          <button class="side-item" type="button" data-url="https://github.com">
+            <span class="favicon-letter tint-github">G</span><span>GitHub</span>
+          </button>
+          <button class="side-item" type="button" data-url="https://en.wikipedia.org">
+            <span class="favicon-letter tint-wikipedia">W</span><span>Wikipedia</span>
+          </button>
+          <button class="side-item" type="button" data-url="https://www.youtube.com">
+            <span class="favicon-letter tint-youtube">Y</span><span>YouTube</span>
+          </button>
+        </div>
+
+        <h3 class="side-label">Library</h3>
+        <button class="side-item" type="button" data-action="saved-groups">
+          <svg><use href="#i-star" /></svg><span>Saved Groups</span>
+        </button>
+        <button class="side-item" type="button" data-action="library" data-view="bookmarks">
+          <svg><use href="#i-star" /></svg><span>Bookmarks</span><kbd>Ctrl+Shift+O</kbd>
+        </button>
+        <button class="side-item" type="button" data-action="library" data-view="history">
+          <svg><use href="#i-clock" /></svg><span>History</span><kbd>Ctrl+H</kbd>
+        </button>
+        <button class="side-item" type="button" data-action="library" data-view="downloads">
+          <svg><use href="#i-download" /></svg><span>Downloads</span><kbd>Ctrl+J</kbd>
+        </button>
+        <button class="side-item" id="sidebar-settings" type="button" data-action="menu-settings" title="Open BOBO Settings">
+          <svg><use href="#i-gear" /></svg><span>Settings</span>
+        </button>
+
+        <div class="side-spacer"></div>
+
+        <div class="ai-card">
+          <svg class="ai-icon"><use href="#i-sparkle" /></svg>
+          <div>
+            <strong>BOBO AI</strong>
+            <p>Ask about the page you are on.</p>
+          </div>
+          <span class="badge">M3</span>
+        </div>
+
+        <button class="side-item" type="button" data-action="theme">
+          <svg id="theme-icon"><use href="#i-sun" /></svg><span id="theme-label">Light theme</span>
+        </button>
+      </aside>
+
+      <!-- The site content area: WebContentsView bounds are measured from this. -->
+      <div id="viewport"></div>
+
+      <!-- BOBO Tools: an in-chrome panel. It shrinks #viewport rather than
+           overlaying the WebContentsView, which always paints above the DOM. -->
+      <section id="tools-panel" class="tools-panel" aria-label="BOBO Tools" hidden>
+        <header class="tp-head">
+          <div id="tp-tabs" class="tp-tabs" role="tablist" aria-label="BOBO Tools"></div>
+          <button id="tp-close" class="icon-btn" type="button" title="Close tools" aria-label="Close BOBO Tools">
+            <svg><use href="#i-close" /></svg>
+          </button>
+        </header>
+
+        <div class="tp-body">
+          <!-- Screenshot -->
+          <div class="tp-view" data-view="screenshot" hidden>
+            <button id="shot-capture" class="btn primary" type="button">
+              <svg><use href="#i-camera" /></svg><span>Capture visible page</span>
+            </button>
+            <p class="tp-hint">Captures only the tab you are looking at, only when you press the button. Nothing is uploaded.</p>
+            <div id="shot-stage" class="shot-stage" hidden>
+              <div id="shot-crop-area" class="shot-crop-area">
+                <img id="shot-preview" alt="Screenshot preview" draggable="false" />
+                <svg id="shot-crop-overlay" class="shot-crop-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" hidden>
+                  <rect id="shot-crop-box" />
+                </svg>
+              </div>
+              <p id="shot-meta" class="tp-meta"></p>
+            </div>
+            <div class="tp-tools-row">
+              <button id="shot-crop" class="btn" type="button" disabled>Crop</button>
+              <button id="shot-crop-apply" class="btn primary" type="button" hidden disabled>Apply crop</button>
+              <button id="shot-crop-cancel" class="btn" type="button" hidden>Cancel crop</button>
+              <button id="shot-crop-reset" class="btn" type="button" hidden>Restore original</button>
+              <button id="shot-copy" class="btn" type="button" disabled>
+                <svg><use href="#i-copy" /></svg><span>Copy</span>
+              </button>
+              <button id="shot-save" class="btn" type="button" disabled>
+                <svg><use href="#i-save" /></svg><span>Save PNG&hellip;</span>
+              </button>
+            </div>
+            <p id="shot-status" class="tp-status" role="status" aria-live="polite"></p>
+            <div class="tp-row">
+              <button id="shot-read-text" class="btn" type="button" disabled>Extract Text</button>
+              <button id="shot-text-copy" class="btn" type="button" hidden>Copy Text</button>
+            </div>
+            <p id="shot-text-status" class="tp-status" role="status"></p>
+            <textarea id="shot-text" class="tp-textarea" aria-label="Text extracted from screenshot" rows="5" readonly hidden></textarea>
+          </div>
+
+          <!-- Quick Notes -->
+          <div class="tp-view" data-view="notes" hidden>
+            <div class="tp-tools-row">
+              <input id="notes-search" class="tp-input" type="search" placeholder="Search notes" aria-label="Search notes" />
+              <button id="notes-new" class="btn primary" type="button">
+                <svg><use href="#i-plus" /></svg><span>New</span>
+              </button>
+            </div>
+            <div class="notes-layout">
+              <ul id="notes-list" class="notes-list" aria-label="Saved notes"></ul>
+              <form id="notes-editor" class="notes-editor" autocomplete="off">
+                <input id="note-title" class="tp-input" type="text" maxlength="200" placeholder="Title" aria-label="Note title" />
+                <textarea id="note-body" class="tp-area" maxlength="200000" placeholder="Write a quick note. It saves as you type." aria-label="Note body"></textarea>
+                <label class="tp-check">
+                  <input id="note-link" type="checkbox" />
+                  <span id="note-link-label">Link to the current page</span>
+                </label>
+                <div class="tp-tools-row">
+                  <button id="note-copy" class="btn" type="button">
+                    <svg><use href="#i-copy" /></svg><span>Copy</span>
+                  </button>
+                  <button id="note-export" class="btn" type="button">
+                    <svg><use href="#i-save" /></svg><span>Export&hellip;</span>
+                  </button>
+                  <button id="note-delete" class="btn danger" type="button">
+                    <svg><use href="#i-trash" /></svg><span>Delete</span>
+                  </button>
+                </div>
+                <p id="notes-status" class="tp-status" role="status" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
+
+          <!-- Page Reader -->
+          <div class="tp-view" data-view="ad-free-youtube" hidden>
+            <h2 class="tp-title">Ad Free YouTube</h2>
+            <label class="tp-row"><input id="alternate-youtube" type="checkbox" disabled /> Use yout-ube.com when opening a YouTube video</label>
+            <p class="tp-help">This opens a separate website and shares the video ID with it. Playback and ad-free viewing depend on that website.</p>
+            <p id="alternate-youtube-status" class="tp-status" role="status"></p>
+          </div>
+          <div class="tp-view" data-view="youtube-auto-skip" hidden>
+            <h2 class="tp-title">YouTube Auto Skip</h2>
+            <label class="tp-row"><input id="youtube-auto-skip" type="checkbox" disabled /> Automatically click Skip on YouTube</label>
+            <p class="tp-help">Works when YouTube displays an enabled Skip button. Your choice is saved for future sessions.</p>
+            <p id="youtube-auto-skip-status" class="tp-status" role="status"></p>
+          </div>
+          <div class="tp-view" data-view="linkedin-capture" hidden>
+            <h2 class="tp-title">LinkedIn Post Capture</h2>
+            <p class="tp-help">Choose a format, then click a post on LinkedIn. Press Escape to cancel.</p>
+            <div class="tp-row">
+              <button class="btn primary" id="linkedin-text" type="button">Select Text</button>
+              <button class="btn" id="linkedin-image" type="button">Select Image</button>
+            </div>
+            <p id="linkedin-status" class="tp-status" role="status"></p>
+            <textarea id="linkedin-preview-text" class="tp-textarea" aria-label="Captured post text" readonly hidden></textarea>
+            <img id="linkedin-preview-image" alt="Captured LinkedIn post" style="max-width:100%" hidden />
+            <div class="tp-row">
+              <button class="btn" id="linkedin-copy" type="button" disabled>Copy</button>
+              <button class="btn" id="linkedin-save" type="button" disabled>Save</button>
+            </div>
+          </div>
+          <div class="tp-view" data-view="reader" hidden>
+            <div class="tp-tools-row">
+              <button id="reader-read" class="btn primary" type="button">
+                <svg><use href="#i-book" /></svg><span>Read this page</span>
+              </button>
+              <div class="tp-font">
+                <button id="reader-smaller" class="icon-btn" type="button" title="Smaller text" aria-label="Smaller text">A&minus;</button>
+                <button id="reader-bigger" class="icon-btn" type="button" title="Larger text" aria-label="Larger text">A+</button>
+              </div>
+            </div>
+            <p id="reader-status" class="tp-status" role="status" aria-live="polite"></p>
+            <article id="reader-doc" class="reader-doc" hidden>
+              <h1 id="reader-title" class="reader-title"></h1>
+              <p id="reader-url" class="reader-url"></p>
+              <div id="reader-content" class="reader-content"></div>
+              <p id="reader-truncated" class="tp-meta" hidden></p>
+            </article>
+            <div id="reader-actions" class="tp-tools-row" hidden>
+              <button id="reader-copy" class="btn" type="button">
+                <svg><use href="#i-copy" /></svg><span>Copy text</span>
+              </button>
+              <button id="reader-save" class="btn" type="button">
+                <svg><use href="#i-save" /></svg><span>Save text&hellip;</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- BOBO Data Export -->
+          <div class="tp-view" data-view="export" hidden>
+            <div class="tp-tool-banner">
+              <svg><use href="#i-export" /></svg>
+              <div>
+                <strong id="export-table-title">No table detected</strong>
+                <p id="export-table-subtitle" class="tp-hint">Open a table page (e.g. eLGCDD) and inspect.</p>
+              </div>
+              <button id="export-inspect-btn" class="btn" type="button">Inspect</button>
+            </div>
+
+            <!-- Export Scope Selection -->
+            <h3 class="tp-h3">Records to export</h3>
+            <div class="export-scope-options">
+              <label class="tp-radio-label">
+                <input type="radio" name="export-scope" value="current" checked />
+                <span>Current page</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="export-scope" value="all" />
+                <span>All available pages</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="export-scope" value="range" />
+                <span>Selected page range</span>
+              </label>
+            </div>
+            <div id="export-range-inputs" class="export-range-row" hidden>
+              <span>From page</span>
+              <input id="export-page-from" type="number" min="1" value="1" class="tp-num-input" />
+              <span>to</span>
+              <input id="export-page-to" type="number" min="1" value="5" class="tp-num-input" />
+            </div>
+
+            <!-- Preferred records per page -->
+            <h3 class="tp-h3">Preferred records per page</h3>
+            <select id="export-page-size" class="tp-select">
+              <option value="5000" selected>5,000 — if supported</option>
+              <option value="1000">1,000</option>
+              <option value="500">500</option>
+              <option value="100">100</option>
+              <option value="default">Website default</option>
+            </select>
+
+            <!-- Export format -->
+            <h3 class="tp-h3">Export format</h3>
+            <div class="export-format-segment" role="group">
+              <button id="fmt-csv" type="button" class="segment-btn is-active" data-fmt="csv">CSV</button>
+              <button id="fmt-pdf" type="button" class="segment-btn" data-fmt="pdf">PDF</button>
+              <button id="fmt-both" type="button" class="segment-btn" data-fmt="both">Both</button>
+            </div>
+
+            <label class="tp-check export-merge-check">
+              <input id="export-merge-chk" type="checkbox" checked disabled />
+              <span>Combine selected pages into one export file</span>
+            </label>
+
+            <!-- Column Selection Header & Controls -->
+            <div class="export-cols-head">
+              <h3 class="tp-h3">Select Columns</h3>
+              <span id="export-col-count" class="badge">0 selected</span>
+              <div class="tp-spacer"></div>
+              <button id="export-select-all" class="btn-subtle" type="button">Select all</button>
+              <button id="export-clear-cols" class="btn-subtle" type="button">Clear</button>
+            </div>
+            <div id="export-columns-grid" class="export-columns-grid"></div>
+
+            <!-- Presets Row -->
+            <div class="export-presets-row">
+              <input id="export-preset-name" type="text" placeholder="Preset name" class="tp-input tp-input-sm" />
+              <button id="export-save-preset" class="btn btn-sm" type="button">Save Preset</button>
+              <select id="export-load-preset" class="tp-select tp-input-sm">
+                <option value="">Saved Presets...</option>
+              </select>
+            </div>
+
+            <!-- Actions -->
+            <div class="tp-tools-row export-action-row">
+              <button id="export-start-btn" class="btn primary" type="button">
+                <svg><use href="#i-export" /></svg><span>Start Export</span>
+              </button>
+              <button id="export-preview-btn" class="btn" type="button">Preview</button>
+              <button id="export-merge-btn" class="btn" type="button" title="Merge existing CSV files">Merge CSVs&hellip;</button>
+            </div>
+            <p id="export-status" class="tp-status" role="status" aria-live="polite"></p>
+
+            <!-- Preview Area -->
+            <div id="export-preview-wrap" class="export-preview-wrap" hidden>
+              <div class="export-preview-head">
+                <strong>Table Preview</strong>
+                <button id="export-preview-close" class="modal-icon-btn" type="button">
+                  <svg><use href="#i-close" /></svg>
+                </button>
+              </div>
+              <div id="export-preview-table-wrap" class="export-preview-table-wrap"></div>
+            </div>
+          </div>
+
+          <!-- Bills History Extraction -->
+          <div class="tp-view" data-view="bills" hidden>
+            <div class="tp-tool-banner">
+              <svg><use href="#i-file-text" /></svg>
+              <div>
+                <strong>Bills History Extraction</strong>
+                <p class="tp-hint">Target: elgcd.punjab.gov.pk/e-billing/water-bill-history</p>
+              </div>
+            </div>
+
+            <!-- Input Tabs: Paste vs CSV -->
+            <div class="bills-input-tabs" role="tablist">
+              <button id="bills-tab-paste" type="button" class="segment-btn is-active">Paste Numbers</button>
+              <button id="bills-tab-csv" type="button" class="segment-btn">Upload CSV</button>
+            </div>
+
+            <!-- Paste Input Area -->
+            <div id="bills-paste-section" class="bills-input-section">
+              <textarea id="bills-paste-area" class="tp-area" placeholder="Paste connection numbers here (one per line, commas or tabs)&#10;81010001&#10;81010002&#10;81010003"></textarea>
+            </div>
+
+            <!-- CSV Upload Area -->
+            <div id="bills-csv-section" class="bills-input-section" hidden>
+              <input id="bills-csv-file" type="file" accept=".csv" class="tp-input" />
+              <p class="tp-hint">Select a CSV file containing connection numbers.</p>
+            </div>
+
+            <button id="bills-import-btn" class="btn primary" type="button">Import into Queue</button>
+
+            <!-- Progress Dashboard -->
+            <h3 class="tp-h3">Extraction Queue</h3>
+            <div class="bills-dashboard">
+              <div class="bills-stat-card">
+                <span class="stat-num" id="bills-stat-total">0</span>
+                <span class="stat-lbl">Total</span>
+              </div>
+              <div class="bills-stat-card is-done">
+                <span class="stat-num" id="bills-stat-done">0</span>
+                <span class="stat-lbl">Completed</span>
+              </div>
+              <div class="bills-stat-card is-pending">
+                <span class="stat-num" id="bills-stat-pending">0</span>
+                <span class="stat-lbl">Pending</span>
+              </div>
+              <div class="bills-stat-card is-empty">
+                <span class="stat-num" id="bills-stat-empty">0</span>
+                <span class="stat-lbl">Empty</span>
+              </div>
+              <div class="bills-stat-card is-fail">
+                <span class="stat-num" id="bills-stat-fail">0</span>
+                <span class="stat-lbl">Failed</span>
+              </div>
+            </div>
+
+            <div class="bills-progress-bar-wrap">
+              <div id="bills-progress-fill" class="bills-progress-fill"></div>
+            </div>
+            <p id="bills-live-status" class="tp-status" role="status" aria-live="polite">Ready</p>
+            <div class="bills-timing">
+              <span>Elapsed <output id="bills-elapsed">00:00:00</output></span>
+              <span>Est. left <output id="bills-eta">—</output></span>
+              <span>Speed <output id="bills-speed">—</output></span>
+              <label for="bills-delay">Delay between lookups (ms)</label>
+              <input id="bills-delay" type="number" min="0" max="60000" step="100" value="600" />
+              <div id="bills-delay-presets" aria-label="Delay presets">
+                <button class="btn" type="button" data-delay="0">No extra delay</button>
+                <button class="btn" type="button" data-delay="400">Turbo 0.4s</button>
+                <button class="btn" type="button" data-delay="800">Fast 0.8s</button>
+                <button class="btn" type="button" data-delay="1500">Normal 1.5s</button>
+                <button class="btn" type="button" data-delay="2500">Safe 2.5s</button>
+              </div>
+            </div>
+
+            <!-- Controls Row -->
+            <div class="tp-tools-row bills-controls-row">
+              <button id="bills-btn-start" class="btn primary" type="button">Start</button>
+              <button id="bills-btn-pause" class="btn" type="button" disabled>Pause</button>
+              <button id="bills-btn-resume" class="btn" type="button" disabled>Resume</button>
+              <button id="bills-btn-stop" class="btn danger" type="button" disabled>Stop</button>
+              <button id="bills-btn-retry" class="btn" type="button">Retry Failed</button>
+              <button id="bills-btn-retry-empty" class="btn" type="button">Re-check Empty</button>
+              <button id="bills-btn-repair" class="btn" type="button" disabled>Repair &amp; retry spreadsheet IDs</button>
+              <button id="bills-btn-export" class="btn" type="button">Export to Folder</button>
+              <button id="bills-btn-export-all" class="btn" type="button">Export All Jobs to One Folder</button>
+              <button id="bills-btn-merged" class="btn" type="button">Export Merged CSV</button>
+              <button id="bills-btn-non-empty" class="btn" type="button">Export Non-Empty CSV</button>
+              <button id="bills-btn-export-empty" class="btn" type="button">Export Empty CSV</button>
+              <button id="bills-btn-export-failed" class="btn" type="button">Export Failed CSV</button>
+              <button id="bills-btn-clear" class="btn danger" type="button">Clear</button>
+            </div>
+
+            <section aria-labelledby="bills-recent-title">
+              <h3 id="bills-recent-title" class="tp-label">Live connections · latest 10</h3>
+              <p class="tp-hint">Current lookup and recent results update automatically. Completed results stay saved.</p>
+              <div class="bills-live-queue">
+                <table aria-label="Latest connection lookups">
+                  <thead><tr><th scope="col">#</th><th scope="col">Connection</th><th scope="col">Status</th><th scope="col">Bills</th></tr></thead>
+                  <tbody id="bills-recent-rows"></tbody>
+                </table>
+              </div>
+            </section>
+            <h3 class="tp-h3">Previous Extraction Jobs</h3>
+            <button id="bills-btn-clear-all" class="btn danger" type="button">Clear all extraction jobs…</button>
+            <div id="bills-jobs-list" class="bills-jobs-list"></div>
+          </div>
+
+          <!-- YouTube Transcript Extractor -->
+          <div class="tp-view" data-view="social-video" hidden>
+            <h3 class="tp-h3">BOBO Social Video Downloader</h3>
+            <label class="tp-check"><input id="social-video-buttons" type="checkbox" disabled /> Show Download buttons on videos</label>
+            <p class="tp-hint">Click the button on a video to save it. If BOBO cannot access a video file from the player, its button shows Download unavailable.</p>
+            <button id="social-video-folder" class="btn" type="button">Choose Download Folder</button>
+            <p id="social-video-destination" class="tp-hint"></p>
+            <p id="social-video-status" class="tp-status" role="status" aria-live="polite"></p>
+            <details>
+            <summary>Manual downloads and queue</summary>
+            <button id="social-video-find" class="btn primary" type="button">Find videos on this page</button>
+            <div id="social-video-found" class="scraper-tools"></div>
+            <p class="tp-hint">Paste a direct MP4, WebM or Ogg link and click Download. For a YouTube watch page, use YouTube’s Download control if offered.</p>
+            <label for="social-video-urls">Video URLs</label>
+            <textarea id="social-video-urls" class="tp-area" placeholder="Paste one video URL per line"></textarea>
+            <div class="tp-actions">
+              <button id="social-video-add" class="btn" type="button">Add to Queue</button>
+              <label>Import TXT or CSV <input id="social-video-import" type="file" accept=".txt,.csv" /></label>
+            </div>
+            <div class="tp-actions">
+              <button id="social-video-start" class="btn primary" type="button">Download</button>
+              <button id="social-video-retry" class="btn" type="button">Retry Failed</button>
+              <button id="social-video-stop" class="btn" type="button" disabled>Cancel Batch</button>
+              <button id="social-video-clear" class="btn" type="button">Clear Completed</button>
+            </div>
+            <div id="social-video-queue"></div>
+            </details>
+          </div>
+          <div class="tp-view" data-view="csv-extractor" hidden>
+            <h3 class="tp-h3">Consumer List CSV Export</h3>
+            <p id="consumer-csv-status" class="tp-status" role="status">Open Consumer List and load its records.</p>
+            <p id="consumer-csv-count" class="tp-hint"></p>
+            <progress id="consumer-csv-progress" max="1" value="0" aria-label="Consumer CSV progress"></progress>
+            <div class="tp-actions">
+              <button id="consumer-csv-start" class="btn primary" type="button">Start export</button>
+              <button id="consumer-csv-stop" class="btn" type="button" disabled>Stop</button>
+            </div>
+            <p id="consumer-csv-columns" class="tp-hint"></p>
+          </div>
+          <div class="tp-view" data-view="web-scraper" hidden>
+            <h3 class="tp-h3">Harvester — Web Scraper</h3>
+            <div class="tp-actions" aria-label="Web Scraper views">
+              <button type="button" class="btn" data-scraper-view="menu" aria-pressed="true">Menu</button>
+              <button type="button" class="btn" data-scraper-view="runs" aria-pressed="false">Runs</button>
+              <button type="button" class="btn" data-scraper-view="data" aria-pressed="false">Data</button>
+            </div>
+            <p class="tp-hint">Choose an extractor for the active page.</p>
+            <div id="scraper-tools" class="scraper-tools">
+              <button type="button" class="btn" data-scrape="list"><strong>List Extractor</strong><span>Collect rows from a table or list.</span></button>
+              <button type="button" class="btn" data-scrape="pick-list"><strong>Pick a repeating list</strong><span>Click one card or row on the active page.</span></button>
+              <button type="button" class="btn" data-scrape="page"><strong>Page Extractor</strong><span>Collect the title, description and headings.</span></button>
+              <button type="button" class="btn" data-scrape="images"><strong>Image Extractor</strong><span>Collect image links and alt text.</span></button>
+              <button type="button" class="btn" data-scrape="email"><strong>Email Extractor</strong><span>Find email addresses displayed on the page.</span></button>
+              <button type="button" class="btn" data-scrape="products"><strong>Product Extractor</strong><span>Collect products published as structured data.</span></button>
+              <button type="button" class="btn" data-scrape="phone"><strong>Phone Extractor</strong><span>Find telephone links and displayed numbers.</span></button>
+              <button type="button" class="btn" data-scrape="social"><strong>Social Link Extractor</strong><span>Find links to social profiles and posts.</span></button>
+              <button type="button" class="btn" data-scrape="text"><strong>Page Text Extractor</strong><span>Collect visible page text.</span></button>
+            </div>
+            <p id="scraper-status" class="tp-status" role="status" aria-live="polite"></p>
+            <div id="scraper-runs" class="scraper-tools" hidden></div>
+            <div id="scraper-data" hidden>
+              <button id="scraper-export" class="btn primary" type="button" disabled>Export CSV</button>
+              <pre id="scraper-preview" class="scraper-preview"></pre>
+            </div>
+          </div>
+          <div class="tp-view" data-view="daily-receive" hidden>
+            <h3 class="tp-h3">Daily Receive Amount</h3>
+            <p class="tp-hint">One click downloads today’s Detail receipt file, uploads it to Daily Staff Receive, generates Staff Daily Progress and downloads Summary Page Only as a PDF. Both dates use today in Pakistan.</p>
+            <button id="daily-receive-download" class="btn primary" type="button">Download report and summary PDF</button>
+            <p id="daily-receive-status" class="tp-status" role="status" aria-live="polite"></p>
+            <p id="daily-receive-elapsed" class="tp-hint"></p>
+            <p class="tp-help">Uploads today’s CSV/Excel file to https://water-supply-reports.vercel.app/daily-staff-receive. Sign in to both sites and set up staff assignments in this BOBO profile first. Both files are saved in Downloads. The upload/PDF step tries up to four times using the same source file, stopping on success. Retries wait 5, 10, then 15 seconds. If it fails, the source file is kept.</p>
+          </div>
+          <div class="tp-view" data-view="bill-prints" hidden>
+            <h3 class="tp-h3">Bill Prints</h3>
+            <p class="tp-hint">Scan the first Water Print Bills page. For more rows, click Next in the portal, wait for the table to update, then click Add current portal page. Download button-only View rows before leaving their page.</p>
+            <div class="tp-actions">
+              <button id="prints-scan" class="btn primary" type="button">Scan billing page</button>
+              <button id="prints-add" class="btn" type="button">Add current portal page</button>
+            </div>
+            <div class="bills-timing">
+              <label>Delay between PDFs (s) <input id="prints-delay" class="tp-input" type="number" min="0" max="60" step="0.1" value="3" /></label>
+              <label>Parallel downloads
+                <select id="prints-parallel" class="tp-select">
+                  <option value="1">1 file</option><option value="2">2 files</option><option value="3">3 files</option>
+                </select>
+              </label>
+              <label>Wait limit (min) <input id="prints-timeout" class="tp-input" type="number" min="1" max="30" value="10" /></label>
+            </div>
+            <p id="prints-status" class="tp-status" role="status" aria-live="polite"></p>
+            <progress id="prints-progress" max="1" value="0" aria-label="PDF batch progress"></progress>
+            <p id="prints-summary" class="tp-hint"></p>
+            <div class="tp-actions">
+              <button id="prints-start" class="btn primary" type="button">Start download</button>
+              <button id="prints-selected" class="btn" type="button">Download selected</button>
+              <button id="prints-pause" class="btn" type="button" disabled>Pause</button>
+              <button id="prints-stop" class="btn" type="button" disabled>Stop</button>
+              <button id="prints-csv" class="btn" type="button">Export locality CSV</button>
+            </div>
+            <h3 class="tp-h3">Locality queue</h3>
+            <div id="prints-list"></div>
+          </div>
+          <div class="tp-view" data-view="transcript" hidden>
+            <div class="tp-tool-banner">
+              <svg><use href="#i-youtube" /></svg>
+              <div>
+                <strong>YouTube Transcript Extractor</strong>
+                <p id="transcript-video-title" class="tp-hint">Retrieve and export video captions</p>
+              </div>
+            </div>
+
+            <label class="tp-row" for="transcript-url">
+              <span>Video URL</span>
+              <input id="transcript-url" type="text" placeholder="https://www.youtube.com/watch?v=..." class="tp-input" />
+            </label>
+            <button id="transcript-use-tab" class="btn-subtle" type="button">
+              <span>Use current YouTube tab</span>
+            </button>
+
+            <h3 class="tp-h3">Transcript language</h3>
+            <select id="transcript-lang-select" class="tp-select">
+              <option value="auto">Auto-detect available captions</option>
+            </select>
+
+            <h3 class="tp-h3">Download format</h3>
+            <div class="transcript-formats-grid">
+              <label class="tp-radio-label">
+                <input type="radio" name="transcript-fmt" value="txt" checked />
+                <span>TXT — Plain text</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="transcript-fmt" value="srt" />
+                <span>SRT — Subtitles with timestamps</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="transcript-fmt" value="vtt" />
+                <span>VTT — Web video subtitles</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="transcript-fmt" value="csv" />
+                <span>CSV — Structured transcript</span>
+              </label>
+              <label class="tp-radio-label">
+                <input type="radio" name="transcript-fmt" value="pdf" />
+                <span>PDF — Readable transcript document</span>
+              </label>
+            </div>
+
+            <label class="tp-check">
+              <input id="transcript-chk-timestamps" type="checkbox" checked />
+              <span>Include timestamps when available</span>
+            </label>
+
+            <div class="tp-tools-row">
+              <button id="transcript-btn-fetch" class="btn primary" type="button">Extract Transcript</button>
+              <button id="transcript-btn-export" class="btn" type="button" disabled>Download</button>
+              <button id="transcript-btn-copy" class="btn" type="button" disabled>Copy All</button>
+            </div>
+            <p id="transcript-status" class="tp-status" role="status" aria-live="polite"></p>
+
+            <!-- Transcript Preview Box -->
+            <div id="transcript-preview-box" class="transcript-preview-box" hidden>
+              <input id="transcript-filter" type="search" placeholder="Search transcript..." class="tp-input" />
+              <div id="transcript-lines" class="transcript-lines"></div>
+            </div>
+          </div>
+
+          <!-- Quick Sector Selector -->
+          <div class="tp-view" data-view="sectors" hidden>
+            <div class="tp-tools-header">
+              <div>
+                <h3 class="tp-h3">Quick Sector Selector</h3>
+                <p class="tp-hint">Save sectors from the active page and auto-select instantly.</p>
+              </div>
+              <span id="sectors-count-badge" class="badge">0 Sectors</span>
+            </div>
+
+            <div class="tp-tools-row">
+              <button id="sectors-btn-refresh" class="btn primary" type="button">
+                <svg><use href="#i-reload" /></svg>
+                <span>Save / Refresh Sectors</span>
+              </button>
+              <button id="sectors-btn-clear" class="btn danger" type="button">Clear</button>
+            </div>
+            <p id="sectors-status" class="tp-status" role="status" aria-live="polite"></p>
+
+            <h3 class="tp-h3">Search &amp; Select Sector</h3>
+            <input id="sectors-filter-input" type="search" placeholder="Type sector name or code..." class="tp-input" />
+
+            <div id="sectors-list" class="sectors-results-list" role="list"></div>
+          </div>
+
+          <!-- Settings -> Personal Tools -->
+          <div class="tp-view" data-view="settings" hidden>
+            <h2 class="tp-h2">Settings</h2>
+
+            <h3 class="tp-h3">Search engine</h3>
+            <label class="tp-row" for="settings-search">
+              <span>Default engine</span>
+              <select id="settings-search" class="tp-select"></select>
+            </label>
+            <p class="tp-hint">Used by the address bar and the New Tab page. Stored locally and kept across updates.</p>
+            <p id="settings-search-status" class="tp-status" role="status" aria-live="polite"></p>
+
+            <h3 class="tp-h3" id="manage-tools-heading" tabindex="-1">Manage tools</h3>
+            <p class="tp-hint">Use Show in sidebar to choose your shortcuts. Hidden shortcuts stay available in the Tools panel and three-dot menu. Use the enable checkbox to turn a tool off.</p>
+            <div id="settings-tools" class="settings-tools"></div>
+            <h3 class="tp-h3">Reader preferences</h3>
+            <label class="tp-row" for="settings-font">
+              <span>Reading text size</span>
+              <input id="settings-font" type="range" min="13" max="24" step="1" />
+              <output id="settings-font-value" for="settings-font">17</output>
+            </label>
+            <h3 class="tp-h3">Permissions</h3>
+            <div id="settings-perms" class="settings-perms"></div>
+            <h3 class="tp-h3">Stored data</h3>
+            <p id="settings-storage" class="tp-meta"></p>
+            <div class="tp-tools-row">
+              <button id="settings-clear-notes" class="btn danger" type="button">Clear notes&hellip;</button>
+              <button id="settings-clear-all" class="btn danger" type="button">Clear all tool data&hellip;</button>
+            </div>
+            <p id="settings-status" class="tp-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Tab search: the page view is detached while this is open. -->
+    <div id="tab-search" class="tab-search" hidden>
+      <div class="tab-search-box" role="dialog" aria-modal="true" aria-label="Search open tabs">
+        <div class="tab-search-head">
+          <svg><use href="#i-search" /></svg>
+          <input id="tab-search-input" type="text" placeholder="Search open tabs" autocomplete="off" spellcheck="false" aria-label="Search open tabs" />
+        </div>
+        <ul id="tab-search-list" class="tab-search-list"></ul>
+        <p class="tab-search-hint">Enter opens the first match &middot; Esc closes</p>
+      </div>
+    </div>
+  </div>
+
+  <dialog id="rename-group-dialog" class="newtab-modal" aria-labelledby="rename-group-title">
+    <form method="dialog">
+      <h2 id="rename-group-title">Rename Group</h2>
+      <input id="rename-group-name" aria-label="Group name" maxlength="120" required autofocus />
+      <div class="tp-row">
+        <button class="btn" type="submit" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn primary" type="submit" value="save">Rename</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="search-suggestions.js"></script>
+  <script src="app.js"></script>
+  <script src="tools.js"></script>
+</body>
+</html>

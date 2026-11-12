@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Unable to reach this page</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/BOBO_Arctic_Frost/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo/BOBO_Arctic_Frost/favicon-16.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="error-page">
+  <main class="error-wrap">
+    <img src="../assets/logo/BOBO_Arctic_Frost/BOBO_Arctic_Frost_64.png" alt="" width="46" height="46" />
+    <p class="error-code" id="error-code">ERR</p>
+    <h1>BOBO can&rsquo;t reach this page</h1>
+    <p class="error-desc" id="error-desc"></p>
+    <p class="error-url" id="error-url"></p>
+
+    <div class="error-actions">
+      <button class="btn-primary" type="button" data-action="retry">Try again</button>
+      <button class="btn-ghost" type="button" data-action="back">Go back</button>
+      <button class="btn-ghost" type="button" data-action="home">BOBO home</button>
+      <button class="btn-ghost" type="button" data-action="close">Close tab</button>
+    </div>
+
+    <p class="error-hint">
+      Check the address, your connection, or any VPN / DNS filter you are running.
+      BOBO never sends your typing anywhere but this device.
+    </p>
+  </main>
+
+  <script src="error.js"></script>
+</body>
+</html>
