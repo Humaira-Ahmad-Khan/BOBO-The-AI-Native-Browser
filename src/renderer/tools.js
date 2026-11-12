@@ -53,6 +53,7 @@
     notesStatus: byId('notes-status'),
 
     readerRead: byId('reader-read'),
+    readerDlPdf: byId('reader-dl-pdf'),
     readerSmaller: byId('reader-smaller'),
     readerBigger: byId('reader-bigger'),
     readerStatus: byId('reader-status'),
@@ -64,6 +65,7 @@
     readerActions: byId('reader-actions'),
     readerCopy: byId('reader-copy'),
     readerSave: byId('reader-save'),
+    readerSavePdf: byId('reader-save-pdf'),
 
     settingsTools: byId('settings-tools'),
     settingsSearch: byId('settings-search'),
@@ -928,6 +930,41 @@
       else setStatus(dom.readerStatus, `Saved to ${result.path}`);
     } catch (error) {
       setStatus(dom.readerStatus, describe(error), 'error');
+    }
+  }
+
+  async function saveReaderPdf() {
+    if (!state.doc) return;
+    try {
+      dom.readerSavePdf.disabled = true;
+      setStatus(dom.readerStatus, 'Creating PDF…');
+      const result = await api.saveReaderPdf(state.doc);
+      if (!result || !result.ok) throw new Error((result && result.error) || 'PDF save failed.');
+      if (result.canceled) setStatus(dom.readerStatus, 'Save canceled.');
+      else setStatus(dom.readerStatus, `PDF saved to ${result.path}`);
+    } catch (error) {
+      setStatus(dom.readerStatus, describe(error), 'error');
+    } finally {
+      dom.readerSavePdf.disabled = false;
+    }
+  }
+
+  async function downloadEmbeddedPdf() {
+    try {
+      dom.readerDlPdf.disabled = true;
+      setStatus(dom.readerStatus, 'Looking for embedded PDF…');
+      const found = await api.findEmbeddedPdf();
+      if (!found || !found.ok) throw new Error((found && found.error) || 'No embedded PDF found on this page.');
+
+      const url = found.urls[0];
+      setStatus(dom.readerStatus, `Downloading PDF…`);
+      const result = await api.downloadEmbeddedPdf(url);
+      if (!result || !result.ok) throw new Error((result && result.error) || 'Download failed.');
+      setStatus(dom.readerStatus, `PDF saved — ${result.filename}`);
+    } catch (error) {
+      setStatus(dom.readerStatus, describe(error), 'error');
+    } finally {
+      dom.readerDlPdf.disabled = false;
     }
   }
 
@@ -1960,8 +1997,10 @@
   dom.noteDelete.addEventListener('click', deleteNote);
 
   dom.readerRead.addEventListener('click', readPage);
+  dom.readerDlPdf.addEventListener('click', downloadEmbeddedPdf);
   dom.readerCopy.addEventListener('click', copyReader);
   dom.readerSave.addEventListener('click', saveReader);
+  dom.readerSavePdf.addEventListener('click', saveReaderPdf);
   dom.readerSmaller.addEventListener('click', () => rememberFont(state.reader.fontSize - 1));
   dom.readerBigger.addEventListener('click', () => rememberFont(state.reader.fontSize + 1));
 

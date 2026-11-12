@@ -134,4 +134,103 @@ async function extract(webContents) {
   };
 }
 
-module.exports = { EXTRACT_SCRIPT, extract, extractFrom };
+/**
+ * Comprehensive script that finds PDF URLs from the page by checking:
+ * 1. Performance API — catches every network request JS made (PDF.js, XHR, fetch)
+ * 2. DOM elements — iframe, embed, object
+ * 3. PDF.js / Google Docs viewer iframes
+ * 4. All script tag contents (finds PDF URLs in JS variables/configs)
+ * 5. Full HTML source scan (catches data-* attrs, inline JSON, etc.)
+ * 6. Anchor tags
+ * Never interpolated — purely a constant.
+ */
+const FIND_PDF_SCRIPT = `(() => {
+  const found = new Set();
+  const isPdf = (s) => s && /\\.pdf(\\?|#|$)/i.test(s);
+  const addUrl = (s) => { try { found.add(new URL(String(s), location.href).href); } catch {} };
+
+  // 1. Performance API: captures every resource the page fetched including JS-loaded PDFs
+  try {
+    for (const entry of performance.getEntriesByType('resource')) {
+      if (isPdf(entry.name)) addUrl(entry.name);
+    }
+  } catch {}
+
+  // 2. Direct DOM embeds
+  for (const el of document.querySelectorAll('embed[src], object[data]')) {
+    const src = (el.getAttribute('src') || el.getAttribute('data') || '').trim();
+    if (isPdf(src)) addUrl(src);
+  }
+
+  // 3. iframes: direct PDF, PDF.js viewer, Google Docs/Drive viewer, lazy-loaded
+  for (const el of document.querySelectorAll('iframe')) {
+    const raw = (el.getAttribute('src') || el.getAttribute('data-src') || '').trim();
+    if (!raw) continue;
+    if (isPdf(raw)) { addUrl(raw); continue; }
+    try {
+      const u = new URL(raw, location.href);
+      const fileParam = u.searchParams.get('file') || u.searchParams.get('pdf') || '';
+      if (fileParam && isPdf(fileParam)) { addUrl(fileParam); continue; }
+      if (u.hash && isPdf(decodeURIComponent(u.hash.slice(1)))) {
+        addUrl(decodeURIComponent(u.hash.slice(1))); continue;
+      }
+      // Google Drive file preview: drive.google.com/file/d/{id}/preview or /view
+      if (u.hostname === 'drive.google.com') {
+        const m = u.pathname.match(/\\/file\\/d\\/([^/]+)\\//);
+        if (m) { found.add('https://drive.google.com/uc?export=download&id=' + m[1]); continue; }
+      }
+      // Google Docs viewer
+      if (u.hostname === 'docs.google.com') {
+        const gUrl = u.searchParams.get('url') || u.searchParams.get('embedded') || '';
+        if (isPdf(gUrl)) { addUrl(gUrl); continue; }
+        const m2 = u.pathname.match(/\\/file\\/d\\/([^/]+)\\//);
+        if (m2) { found.add('https://drive.google.com/uc?export=download&id=' + m2[1]); continue; }
+      }
+    } catch {}
+  }
+
+  // 4. Scan script tag text for PDF URL patterns (catches JS variables like pdfUrl = "...")
+  const pdfUrlRe = /https?:\\/\\/[^\\s'"<>\\\\]+\\.pdf(?:[?#][^\\s'"<>\\\\]*)?/gi;
+  for (const el of document.querySelectorAll('script')) {
+    const text = el.textContent || '';
+    for (const match of text.matchAll(pdfUrlRe)) addUrl(match[0]);
+  }
+
+  // 5. Full HTML source scan (data-* attributes, inline JSON, noscript blocks, etc.)
+  if (!found.size) {
+    for (const match of (document.documentElement.innerHTML || '').matchAll(pdfUrlRe)) {
+      addUrl(match[0]);
+    }
+  }
+
+  // 6. Anchor tags
+  for (const el of document.querySelectorAll('a[href]')) {
+    if (isPdf(el.getAttribute('href') || '')) addUrl(el.href);
+  }
+
+  // Prefer same-origin PDFs first, then others
+  const all = [...found];
+  const sameOrigin = all.filter(u => { try { return new URL(u).origin === location.origin; } catch { return false; } });
+  return (sameOrigin.length ? sameOrigin : all).slice(0, 10);
+})()`;
+
+/**
+ * Find embedded PDF URLs in the active tab.
+ * @param {import('electron').WebContents|null} webContents
+ */
+async function findEmbeddedPdfs(webContents) {
+  if (!webContents || webContents.isDestroyed()) {
+    return { ok: false, error: 'No active tab.' };
+  }
+  try {
+    const urls = await webContents.executeJavaScript(FIND_PDF_SCRIPT, false);
+    if (!Array.isArray(urls) || !urls.length) {
+      return { ok: false, error: 'No embedded PDF found on this page.' };
+    }
+    return { ok: true, urls };
+  } catch (error) {
+    return { ok: false, error: `Could not scan page: ${error.message}` };
+  }
+}
+
+module.exports = { EXTRACT_SCRIPT, FIND_PDF_SCRIPT, extract, extractFrom, findEmbeddedPdfs };

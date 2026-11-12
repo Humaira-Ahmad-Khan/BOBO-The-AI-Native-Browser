@@ -108,6 +108,9 @@ const INVOKE_CHANNELS = [
   'bobo:notes:export',
   'bobo:reader:extract',
   'bobo:reader:save',
+  'bobo:reader:save-pdf',
+  'bobo:reader:find-pdf',
+  'bobo:reader:download-pdf',
   // Data Export
   'bobo:export:inspect-table',
   'bobo:export:collect-pages',
@@ -343,6 +346,9 @@ const bridge = {
   // Reader
   extractReader: () => invoke('bobo:reader:extract'),
   saveReader: (doc) => invoke('bobo:reader:save', { doc }),
+  saveReaderPdf: (doc) => invoke('bobo:reader:save-pdf', { doc }),
+  findEmbeddedPdf: () => invoke('bobo:reader:find-pdf'),
+  downloadEmbeddedPdf: (url) => invoke('bobo:reader:download-pdf', { url }),
 
   // Data Export
   inspectTable: () => invoke('bobo:export:inspect-table'),

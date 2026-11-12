@@ -244,6 +244,43 @@ function registerToolIpc({ handle, services, getActiveWebContents, getToolTabCon
 
   handle('bobo:reader:extract', () => reader.extract(getActiveWebContents()));
 
+  handle('bobo:reader:find-pdf', () => reader.findEmbeddedPdfs(getActiveWebContents()));
+
+  handle('bobo:reader:download-pdf', async (payload) => {
+    const url = payload && typeof payload.url === 'string' ? payload.url.trim() : '';
+    if (!url || !/^https?:\/\//i.test(url)) throw new Error('BOBO: invalid PDF URL');
+    // Allow direct .pdf URLs and Google Drive download URLs
+    const isDirectPdf = /\.pdf(\?|#|$)/i.test(url);
+    const isDriveDownload = /^https:\/\/drive\.google\.com\/uc\?/i.test(url) && url.includes('export=download');
+    if (!isDirectPdf && !isDriveDownload) throw new Error('BOBO: URL does not look like a PDF');
+
+    const wc = getActiveWebContents();
+    if (!wc || wc.isDestroyed()) throw new Error('No active tab to download from.');
+
+    const directory = (await settings.state()).browser?.downloads?.directory || app.getPath('downloads');
+
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error('Download did not start in time.')), 15000);
+
+      wc.session.once('will-download', (_event, item) => {
+        clearTimeout(timeout);
+        const filename = item.getFilename() || 'study-material.pdf';
+        const filePath = path.join(directory, filename);
+        item.setSavePath(filePath);
+        item.once('done', (_e, state) => {
+          if (state === 'completed') {
+            recordDownload?.({ filename, filePath, totalBytes: item.getTotalBytes(), source: 'reader' });
+            resolve({ ok: true, path: filePath, filename });
+          } else {
+            reject(new Error(`Download ${state}.`));
+          }
+        });
+      });
+
+      wc.downloadURL(url);
+    });
+  });
+
   handle('bobo:reader:save', async (payload) => {
     const document = readReaderDocument(payload && payload.doc);
     const file = await askWhereToSave({
@@ -264,6 +301,49 @@ function registerToolIpc({ handle, services, getActiveWebContents, getToolTabCon
       filename: path.basename(file),
       filePath: file,
       totalBytes: Buffer.byteLength(md, 'utf8'),
+      source: 'reader',
+    });
+    return { ok: true, path: file };
+  });
+
+  handle('bobo:reader:save-pdf', async (payload) => {
+    const document = readReaderDocument(payload && payload.doc);
+    const file = await askWhereToSave({
+      title: 'Save page as PDF',
+      defaultPath: path.join(
+        app.getPath('downloads'),
+        `${safeFileName(document.title, 'bobo-page')}.pdf`
+      ),
+      filters: [{ name: 'PDF Documents', extensions: ['pdf'] }],
+    });
+    if (!file) return { ok: true, canceled: true };
+
+    const bodyLines = (document.blocks || []).map((block) => {
+      if (block.kind === 'heading') return `<h2>${block.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h2>`;
+      return `<p>${block.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`;
+    }).join('\n');
+
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8">
+<title>${document.title.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 13pt; line-height: 1.7; margin: 2cm 2.5cm; color: #111; }
+  h1 { font-size: 18pt; margin-bottom: 4px; }
+  h2 { font-size: 14pt; margin-top: 1.4em; margin-bottom: 4px; color: #1a1a1a; }
+  p { margin: 0.5em 0 1em; }
+  .meta { font-size: 10pt; color: #555; margin-bottom: 1.5em; }
+</style>
+</head><body>
+<h1>${document.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</h1>
+${document.url ? `<p class="meta">Source: ${document.url.replace(/&/g, '&amp;')}</p>` : ''}
+${bodyLines}
+</body></html>`;
+
+    const pdfData = await printReportPdf(html, false);
+    await fs.writeFile(file, pdfData);
+    recordDownload?.({
+      filename: path.basename(file),
+      filePath: file,
+      totalBytes: pdfData.length,
       source: 'reader',
     });
     return { ok: true, path: file };
