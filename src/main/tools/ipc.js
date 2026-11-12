@@ -22,6 +22,7 @@ const { recognizeScreenshot } = require('./screenshot-ocr');
 const { collectTablePages } = require('./table-pages');
 const { downloadDailyReceive } = require('./daily-receive');
 const { SocialVideoQueue, findPageVideos, playerVideoSource } = require('./social-video');
+const { reserveDownloadPath } = require('../downloads');
 
 const MAX_BLOCKS = 500;
 
@@ -259,24 +260,50 @@ function registerToolIpc({ handle, services, getActiveWebContents, getToolTabCon
 
     const directory = (await settings.state()).browser?.downloads?.directory || app.getPath('downloads');
 
+    // The app-wide download manager (attachDownloads) already records this item in the
+    // Downloads list, so this handler only picks a collision-free path and waits for 'done'.
+    const { session } = wc;
     return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => reject(new Error('Download did not start in time.')), 15000);
-
-      wc.session.once('will-download', (_event, item) => {
+      let reserved = '';
+      const cleanup = () => {
         clearTimeout(timeout);
-        const filename = item.getFilename() || 'study-material.pdf';
-        const filePath = path.join(directory, filename);
-        item.setSavePath(filePath);
-        item.once('done', (_e, state) => {
-          if (state === 'completed') {
-            recordDownload?.({ filename, filePath, totalBytes: item.getTotalBytes(), source: 'reader' });
-            resolve({ ok: true, path: filePath, filename });
-          } else {
-            reject(new Error(`Download ${state}.`));
-          }
-        });
-      });
+        session.removeListener('will-download', onDownload);
+      };
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error('Download did not start in time.'));
+      }, 15000);
 
+      function onDownload(_event, item) {
+        if (new URL(item.getURLChain()[0]).href !== new URL(url).href) return;
+        cleanup();
+        if (!item.getSavePath()) {
+          try {
+            reserved = reserveDownloadPath(directory, item.getFilename() || 'study-material.pdf');
+            item.setSavePath(reserved);
+          } catch (error) {
+            item.cancel();
+            reject(new Error(`Cannot save to the downloads folder: ${error.message}`));
+            return;
+          }
+        }
+        // An interrupted item does not emit 'done'; it waits to be resumed, which the
+        // Downloads list shows as "paused". Cancel it so the tool reports the failure.
+        item.on('updated', (_e, state) => {
+          if (state === 'interrupted') item.cancel();
+        });
+        item.once('done', (_e, state) => {
+          const filePath = item.getSavePath();
+          if (state === 'completed') {
+            resolve({ ok: true, path: filePath, filename: path.basename(filePath) });
+            return;
+          }
+          if (reserved) fs.unlink(reserved).catch(() => {});
+          reject(new Error('Download failed. If the file is open in another program, close it and try again.'));
+        });
+      }
+
+      session.on('will-download', onDownload);
       wc.downloadURL(url);
     });
   });
